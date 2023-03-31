@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 var bodyParser = require("body-parser");
+const db = require("../db.js");
 router.get("/", (req, res) => {
   console.log("kek");
   res.render("login.ejs");
