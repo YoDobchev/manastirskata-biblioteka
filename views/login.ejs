@@ -32,6 +32,8 @@
           },
           body: JSON.stringify({ username, password }),
         });
+        console.log(response);
+        location.assign(response.url);
       });
     </script>
   </body>
