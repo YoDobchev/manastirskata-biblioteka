@@ -29,6 +29,7 @@ app.get("/", isLoggedIn, (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+app.use("/home", isLoggedIn, require("./routes/home.js"));
 app.use("/login", require("./routes/login.js"));
 app.use("/signup", require("./routes/signup.js"));
-app.use("/", isLoggedIn, require("./routes/home.js"));
+app.use("/adventures", isLoggedIn, require("./routes/signup.js"));
