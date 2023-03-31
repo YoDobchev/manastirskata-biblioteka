@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const isLoggedIn = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
@@ -22,6 +23,7 @@ router.get("/shop", isLoggedIn, (req, res) => {
 
 router.get("/profile", isLoggedIn, (req, res) => {
   res.render("home.ejs", {activePage: 'profile'});
+
 });
 
 module.exports = router;
