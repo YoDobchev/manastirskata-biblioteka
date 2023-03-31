@@ -1,4 +1,3 @@
-
 const express = require("express");
 var Datastore = require("nedb");
 const app = express();
