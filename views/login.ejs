@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="../styles/home.css">
   </head>
   <body>
     <h1>Login Page</h1>
@@ -14,16 +15,12 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" />
       </div>
-      <button type="submit" id="loginButton">Log In</button>
+      <button type="submit" id="submitButton">Login</button>
     </form>
-    <br />
-    <button id="signupButton">Sign Up</button>
     <script>
       const form = document.querySelector("form");
-      const loginButton = document.querySelector("#loginButton");
-      const signupButton = document.querySelector("#signupButton");
 
-      loginButton.addEventListener("click", async (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const username = form.elements.username.value;
@@ -36,25 +33,6 @@
           },
           body: JSON.stringify({ username, password }),
         });
-        console.log(response);
-        location.assign(response.url);
-      });
-
-      signupButton.addEventListener("click", async (event) => {
-        event.preventDefault();
-
-        const username = form.elements.username.value;
-        const password = form.elements.password.value;
-
-        const response = await fetch("/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        });
-        console.log(response);
-        location.assign(response.url);
       });
     </script>
   </body>
