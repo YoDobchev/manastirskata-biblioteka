@@ -2,7 +2,16 @@
 <html>
   <head>
     <title>Mobile Page</title>
-    <style>
+     
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+	 
+	 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+	<style>
       body {
         margin: 0;
         padding: 0;
@@ -69,14 +78,12 @@
       }
     </style>
   </head>
+  
+
   <body>
     <div id="container">
-      <img
-        id="image"
-        src="https://via.placeholder.com/800x600"
-        alt="Big Image"
-      />
-      <div id="progress">
+       <div id="map" style="width: 100%; height: 600px;"></div>
+		<div id="progress">
         <div id="progress-filled"></div>
       </div>
       <div id="buttons">
@@ -86,5 +93,17 @@
         <div class="button"></div>
       </div>
     </div>
+
+	<script>
+		var map = L.map('map').setView([51.505, -0.09], 13);
+
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+	L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup();
+	</script>
   </body>
 </html>
