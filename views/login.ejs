@@ -14,12 +14,16 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" />
       </div>
-      <button type="submit" id="submitButton">Login</button>
+      <button type="submit" id="loginButton">Log In</button>
     </form>
+    <br />
+    <button id="signupButton">Sign Up</button>
     <script>
       const form = document.querySelector("form");
+      const loginButton = document.querySelector("#loginButton");
+      const signupButton = document.querySelector("#signupButton");
 
-      form.addEventListener("submit", async (event) => {
+      loginButton.addEventListener("click", async (event) => {
         event.preventDefault();
 
         const username = form.elements.username.value;
@@ -32,6 +36,25 @@
           },
           body: JSON.stringify({ username, password }),
         });
+        console.log(response);
+        location.assign(response.url);
+      });
+
+      signupButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        const username = form.elements.username.value;
+        const password = form.elements.password.value;
+
+        const response = await fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
+        console.log(response);
+        location.assign(response.url);
       });
     </script>
   </body>
