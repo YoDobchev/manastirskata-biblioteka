@@ -1,14 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const isLoggedIn = (req, res, next) => {
-  if (req.session.loggedIn) {
-    next();
-  } else {
-    // next();
-    res.redirect("/login");
-  }
-};
-router.get("/", isLoggedIn, (req, res) => {
+
+router.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
