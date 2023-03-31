@@ -21,5 +21,5 @@ const isLoggedIn = (req, res, next) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-app.use("/", require("./routes/home.js"));
+app.use("/home", require("./routes/home.js"));
 app.use("/login", require("./routes/login.js"));
