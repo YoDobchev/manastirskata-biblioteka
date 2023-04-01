@@ -10,9 +10,6 @@ router.post("/", (req, res) => {
   db.users.findOne({ username: req.body.username }, (err, doc) => {
     console.log(req.body.username);
     console.log(doc);
-    if (!req.body.username || !req.body.password) {
-      res.send(400);
-    }
     if (doc === null) {
       req.session.ID = crypto
         .createHash("sha256")
@@ -27,7 +24,6 @@ router.post("/", (req, res) => {
           .update(req.body.password)
           .digest("hex"),
         location: { latitude: 0, longitude: 0 },
-        currentAdventure: null,
       });
     } else {
       res.redirect("/login");
