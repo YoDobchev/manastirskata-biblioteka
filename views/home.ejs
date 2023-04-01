@@ -10,7 +10,7 @@
       crossorigin=""
     />
 
-    <!-- <link rel="stylesheet" href="/styles/index.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
 
     <script
@@ -73,7 +73,7 @@
     </div>
 
     <div class="ss-block">
-      <h1 id="adventures">Adventures near you</h1>
+      <h1>Adventures near you</h1>
     </div>
     <div id="map">
       <script>
@@ -87,35 +87,53 @@
           }
         ).addTo(map);
         var currentLocationIcon = L.icon({
-        
-          iconUrl: "icons/current.svg",
+          iconUrl: "assets/icons/current.svg",
           iconSize: [32, 32],
           iconAnchor: [16, 16],
-          popupAnchor: [0, -16]
-              
+          popupAnchor: [0, -16],
         });
     
-        L.marker([51.5, -0.09], {icon: currentLocationIcon}).addTo(map);
+        //L.marker([51.5, -0.09], {icon: currentLocationIcon}).addTo(map);
     
         const userLocation = L.marker([0.0, 0.0], {
           icon: currentLocationIcon,
         }).addTo(map);
         let uLon, uLan;
         // Get the user's location using the Geolocation API
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            // Set the marker's position to the user's location
-            userLocation.setLatLng([
-              position.coords.latitude,
-              position.coords.longitude,
-            ]);
-            // Set the map's view to the user's location
-            map.setView([position.coords.latitude, position.coords.longitude], 13);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+        setInterval(() => {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      // Make a POST request to the endpoint with the user's location
+      fetch('/locationEvent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      })
+      .then(response => {
+        // Handle the response if necessary
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      
+      // Set the marker's position to the user's location
+      userLocation.setLatLng([
+        position.coords.latitude,
+        position.coords.longitude,
+      ]);
+      // Set the map's view to the user's location
+      map.setView([position.coords.latitude, position.coords.longitude], 13);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}, 2000);
         // */
         //     const userLocation = L.marker([0.0, 0.0], { icon: currentIcon }).addTo(
         //       map

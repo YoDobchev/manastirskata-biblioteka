@@ -9,10 +9,12 @@ router.get("/joinAdventure", (req, res) => {
   db.users.update(
     { username: req.session.user },
     {
-      currentAdventure: {
-        ID: req.query.adventureID,
-        progressIndex: 0,
-        tokens: 0,
+      $set: {
+        currentAdventure: {
+          ID: req.query.adventureID,
+          progressIndex: 0,
+          tokens: 0,
+        },
       },
     },
     (err) => {
@@ -23,6 +25,9 @@ router.get("/joinAdventure", (req, res) => {
       }
     }
   );
+  db.findOne({ username: req.session.user }, (err, docs) => {
+    console.log(docs);
+  });
 });
 
 router.get("/getNearbyAdventures", urlencodedParser, (req, res) => {
