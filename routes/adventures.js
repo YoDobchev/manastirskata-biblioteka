@@ -7,7 +7,7 @@ var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.post("createAdventure", (req, res) => {});
-router.get("joinAdventure", (req, res) => {
+router.get("/joinAdventure", (req, res) => {
   if (
     db.users.findOne({ username: req.session.user }, (err, doc) => {
       if (!doc.currentAdventure) {
