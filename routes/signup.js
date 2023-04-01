@@ -7,6 +7,7 @@ router.use(bodyParser.json());
 router.post("/", (req, res) => {
   // check username and password
 
+
   db.users.findOne({ username: req.body.username }, (err, doc) => {
     console.log(req.body.username);
     console.log(doc);
@@ -28,6 +29,7 @@ router.post("/", (req, res) => {
     } else {
       res.redirect("/login");
     }
+
   });
 });
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 var bodyParser = require("body-parser");
 const db = require("../db.js");
+
 var jsonParser = bodyParser.json();
 
 // create application/x-www-form-urlencoded parser
@@ -34,5 +35,6 @@ router.get("/getNearbyAdventures", urlencodedParser, (req, res) => {
   });
 });
 router.post("createAdventure", (req, res) => {});
+
 
 module.exports = router;
