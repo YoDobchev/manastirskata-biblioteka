@@ -152,17 +152,45 @@
       const userLocation = L.marker([0.0, 0.0], {
         icon: new PurpleIcon()
       }).addTo(map);
+      navigator.geolocation.getCurrentPosition(  position => {
 
-      // Get the user's location using the Geolocation API
-      navigator.geolocation.getCurrentPosition(position => {
-        // Set the marker's position to the user's location
-        userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
+      map.setView([position.coords.latitude, position.coords.longitude], 13);})
 
-        // Set the map's view to the user's location
-        map.setView([position.coords.latitude, position.coords.longitude], 13);
-      }, error => {
-        console.error(error);
-      });
+   
+        // Call setInterval function after user has accepted to share their location
+        setInterval(() => {
+          navigator.geolocation.getCurrentPosition( async position => {
+            fetch('/getNearbyAdventures')
+           .then(response => response.json())
+          .then(data => console.log(JSON.stringify(data)));
+
+            // Set the marker's position to the user's location
+            userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
+
+            // Set the map's view to the user's location
+            console.log(position.coords.latitude,position.coords.longitude)
+            fetch('/locationEvent', {
+                method: 'POST',
+                body:JSON.stringify({
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude
+                }),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+              .then(response => {
+                console.log('Location event sent successfully.');
+              })
+              .catch(error => {
+                console.error('Error sending location event:', error);
+              });
+          }, error => {
+            console.error(error);
+          });
+        }, 1000);
+      
+
 
 
       var marker = L.marker([51.5, -0.09], {

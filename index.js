@@ -3,7 +3,12 @@ var Datastore = require("nedb");
 const app = express();
 const session = require("express-session");
 const port = 3000;
+const bodyParser = require("body-parser");
+const jsonParser = bodyParser.json({ limit: "1mb" });
+
+app.use(jsonParser);
 app.set("view engine", "ejs");
+const db = require("./db.js");
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(
   session({
@@ -29,7 +34,27 @@ app.get("/", isLoggedIn, (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+///
+db.adventures.insert({
+  Startlocation: {
+    type: "Point",
+    coordinates: [42.0230861, 23.0854894],
+  },
+});
+//for debugging
+//
+
+app.post("/locationEvent", isLoggedIn, (req, res) => {
+  console.log(req.body);
+  db.users.update(
+    { username: req.session.user },
+    { $set: { location: req.body } },
+    {},
+    (err) => {}
+  );
+});
 app.use("/login", require("./routes/login.js"));
 app.use("/signup", require("./routes/signup.js"));
-app.use("/adventures", isLoggedIn, require("./routes/signup.js"));
+app.use("/", isLoggedIn, require("./routes/adventures.js"));
 app.use("/", isLoggedIn, require("./routes/home.js"));
