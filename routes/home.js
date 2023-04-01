@@ -32,8 +32,6 @@ router.use(urlencodedParser, (req, res, next) => {
         return latDiff <= threshold && lonDiff <= threshold;
       });
       req.nearbyAdvs = filteredDocs;
-
-      req.user = docs;
       console.log(filteredDocs + "eee");
       next();
     });
@@ -41,38 +39,19 @@ router.use(urlencodedParser, (req, res, next) => {
 });
 
 router.get("/home", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "nearyou" });
+  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "home" });
 });
 
-router.get("/nearyou", (req, res) => {
-  res.render("nearyou.ejs", { advs: req.nearbyAdvs });
-});
-router.get("/mapPage", (req, res) => {
+router.get("/map", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "map" });
 });
-router.get("/map", (req, res) => {
-  let routeTo = { latitude: 0, longitude: 0 };
-  if (req.query.id) {
-    db.adventures.findOne({ _id: req.query.id }, (err, doc) => {
-      if (doc.latitude != 0) {
-        routeTo.latitude = doc.locations[0].latitude;
-        routeTo.longitude = doc.locations[0].longitude;
-        res.render("map.ejs", { nextLocation: routeTo });
-      }
-    });
-  }
-});
-router.get("/shopPage", (req, res) => {
+
+router.get("/shop", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "shop" });
 });
-router.get("/shop", (req, res) => {
-  res.render("shop.ejs");
-});
-router.get("/profilePage", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "profile" });
-});
+
 router.get("/profile", (req, res) => {
-  res.render("profile.ejs");
+  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "profile" });
 });
 
 module.exports = router;
