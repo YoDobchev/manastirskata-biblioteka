@@ -38,11 +38,15 @@ router.use(urlencodedParser, (req, res, next) => {
 });
 
 router.get("/home", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "nearyou" });
+  res.render("home.ejs", {
+    advs: req.nearbyAdvs,
+    activePage: "nearyou",
+    user: req.user,
+  });
 });
 
 router.get("/nearyou", (req, res) => {
-  res.render("nearyou.ejs", { advs: req.nearbyAdvs });
+  res.render("nearyou.ejs", { advs: req.nearbyAdvs, user: req.user });
 });
 router.get("/mapPage", (req, res) => {
   res.render("home.ejs", {
@@ -55,16 +59,24 @@ router.get("/map", (req, res) => {
   res.render("map.ejs");
 });
 router.get("/shopPage", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "shop" });
+  res.render("home.ejs", {
+    advs: req.nearbyAdvs,
+    activePage: "shop",
+    user: req.user,
+  });
 });
 router.get("/shop", (req, res) => {
   res.render("shop.ejs");
 });
 router.get("/profilePage", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "profile" });
+  res.render("home.ejs", {
+    advs: req.nearbyAdvs,
+    activePage: "profile",
+    user: req.user,
+  });
 });
 router.get("/profile", (req, res) => {
-  res.render("profile.ejs");
+  res.render("profile.ejs", { user: req.user });
 });
 
 module.exports = router;
