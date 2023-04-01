@@ -34,6 +34,17 @@ app.get("/", isLoggedIn, (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+///
+db.adventures.insert({
+  Startlocation: {
+    type: "Point",
+    coordinates: [42.0230861, 23.0854894],
+  },
+});
+//for debugging
+//
+
 app.post("/locationEvent", isLoggedIn, (req, res) => {
   console.log(req.body);
   db.users.update(
