@@ -11,6 +11,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(express.static(__dirname + "/public"))
 const isLoggedIn = (req, res, next) => {
   if (req.session.loggedIn) {
     next();

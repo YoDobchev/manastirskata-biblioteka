@@ -1,5 +1,5 @@
 const express = require("express");
-const app = exoress();
+const app = express();
 const router = express.Router();
 const isLoggedIn = (req, res, next) => {
   if (req.session.loggedIn) {
