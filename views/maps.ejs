@@ -1,0 +1,243 @@
+@ -0,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maps</title>
+    <link rel="stylesheet" href="/styles/maps.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  </head>
+  <body>
+
+    <!--------------------------- BOTTOM MENU --------------------------->
+    <div id="bottom-menu">
+      <div class="bm-item" id="home" onclick="loadMap()">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_9_676)">
+            <path d="M4.26135 27.2728V11.9319L15 1.19324L25.7386 11.9319V27.2728C25.7386 27.6796 25.577 28.0699 25.2893 28.3576C25.0016 28.6453 24.6114 28.8069 24.2045 28.8069H5.79544C5.38858 28.8069 4.99838 28.6453 4.71068 28.3576C4.42298 28.0699 4.26135 27.6796 4.26135 27.2728Z" stroke="#404040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.9318 20.016V27.2727V28.8068H18.0681V27.2727V20.016C18.0681 19.6092 17.9065 19.219 17.6188 18.9313C17.3311 18.6436 16.9409 18.4819 16.534 18.4819H13.4659C13.059 18.4819 12.6688 18.6436 12.3811 18.9313C12.0934 19.219 11.9318 19.6092 11.9318 20.016Z" stroke="#404040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1.19324 15.0001L4.26142 11.9319L15.0001 1.19324L25.7387 11.9319L28.8069 15.0001" stroke="#404040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_9_676">
+            <rect width="30" height="30" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>
+            
+      </div>
+      <div class="bm-item sel" id="map" onclick="loadHome()">
+        <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_9_660)">
+            <path d="M10.9444 5.75896L1.55554 1.13843V24.2411L10.9444 28.8616L21.0555 24.2411L30.4444 28.8616V5.75896L21.0555 1.13843L10.9444 5.75896Z" fill="#DF84FF" stroke="#BD00FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21.0555 1.13843V24.2411" stroke="#BD00FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.9445 5.75891V28.8616" stroke="#BD00FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.25 26.5514L10.9444 28.8616L21.0556 24.2411L25.75 26.5514" stroke="#BD00FF" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_9_660">
+            <rect width="32" height="30" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>      </div>
+      <div class="bm-item" id="market">
+        <svg
+          width="91"
+          height="91"
+          viewBox="0 0 91 91"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.48364 21.0039H85.7464V37.2565L82.9022 38.963C80.6927 40.2879 78.1648 40.9878 75.5885 40.9878C73.0123 40.9878 70.4844 40.2879 68.2749 38.963L65.4307 37.2565L62.5865 38.963C60.377 40.2879 57.8491 40.9878 55.2729 40.9878C52.6966 40.9878 50.1687 40.2879 47.9592 38.963L45.115 37.2565L42.2708 38.963C40.0613 40.2879 37.5335 40.9878 34.9572 40.9878C32.3809 40.9878 29.853 40.2879 27.6435 38.963L24.7993 37.2565L21.9551 38.963C19.7457 40.2879 17.2178 40.9878 14.6415 40.9878C12.0652 40.9878 9.53731 40.2879 7.32784 38.963L4.48364 37.2565V21.0039Z"
+            stroke="#404040"
+            stroke-width="4.50071"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12.6099 42.3107V86.0138H77.6201V41.3193"
+            stroke="#404040"
+            stroke-width="4.50071"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12.6099 20.6419V4.75098H77.6201V21.0035"
+            stroke="#404040"
+            stroke-width="4.50071"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M55.2725 61.6355H34.9568V86.0143H55.2725V61.6355Z"
+            stroke="#404040"
+            stroke-width="4.50071"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <div class="bm-item" id="profile">
+        <div id="user-pic"></div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------------->
+
+    <!-- ---------------------------------------TOP MENU----------------------------------------------------->
+    <div id="top-menu">
+      <div id="logo">
+        <svg
+          width="45"
+          height="27"
+          viewBox="0 0 45 27"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.14746 22.3674C-0.510103 20.396 -0.0140907 16.3333 0.44111 14.5483C12.5714 16.785 19.12 13.2372 20.878 11.1837C28.5631 3.18451 32.5877 1.31109 33.6394 1.37427L35.7584 3.26981C40.8818 3.80057 42.8219 6.04994 43.1515 7.10829C42.6178 6.50803 39.1112 7.36418 29.3542 15.5908C19.5972 23.8175 6.48429 23.5363 1.14746 22.3674Z"
+            fill="#BD00FF"
+          />
+          <path
+            d="M32.5092 18.055C27.1221 24.3862 21.2234 26.2217 18.9474 26.348C22.9782 28.2436 27.2195 25.5582 28.8362 23.9786C36.7473 27.3906 40.8284 22.1147 41.8801 19.0502C45.4212 16.3964 45.2391 12.7001 44.7054 11.1837C42.8846 10.8362 37.8963 11.7239 32.5092 18.055Z"
+            fill="#BD00FF"
+          />
+          <path
+            d="M7.08075 8.7195C6.06361 8.7195 4.14549 10.0464 3.31357 10.7098C6.18605 11.9735 14.9259 11.6007 26.9055 0C24.5699 0.530752 22.7302 1.80077 22.1024 2.36943C12.1947 -3.50675 7.95976 4.1544 7.08075 8.7195Z"
+            fill="#BD00FF"
+          />
+        </svg>
+      </div>
+      <div id="credits">
+        <label for="">1500</label>
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 80 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M80 40C80 62.0914 62.0914 80 40 80C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0C62.0914 0 80 17.9086 80 40Z"
+            fill="#BD00FF"
+          />
+          <path
+            d="M71.4289 40C71.4289 57.3575 57.3579 71.4286 40.0003 71.4286C22.6428 71.4286 8.57178 57.3575 8.57178 40C8.57178 22.6425 22.6428 8.57141 40.0003 8.57141C57.3579 8.57141 71.4289 22.6425 71.4289 40Z"
+            fill="#DF84FF"
+          />
+          <path
+            d="M40.513 55.9001C35.4122 55.9001 31.3166 54.3549 28.2261 51.2644C25.1356 48.1439 23.5904 44.1383 23.5904 39.2475C23.5904 34.3568 25.1356 30.3661 28.2261 27.2756C31.3166 24.1552 35.4122 22.5949 40.513 22.5949C45.0737 22.5949 48.7793 23.7201 51.6298 25.9704C54.5102 28.1908 56.1605 31.1763 56.5805 34.9268H48.8393C48.4193 33.1266 47.4891 31.7163 46.0489 30.6962C44.6087 29.646 42.7784 29.1209 40.558 29.1209C37.6176 29.1209 35.3222 30.0361 33.6719 31.8664C32.0217 33.6667 31.1965 36.127 31.1965 39.2475C31.1965 42.368 32.0217 44.8434 33.6719 46.6737C35.3222 48.474 37.6176 49.3741 40.558 49.3741C42.7784 49.3741 44.6087 48.864 46.0489 47.8439C47.4891 46.7937 48.4193 45.3685 48.8393 43.5682H56.5805C56.1605 47.3188 54.5102 50.3193 51.6298 52.5696C48.7793 54.79 45.0737 55.9001 40.513 55.9001Z"
+            fill="#BD00FF"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- TOP MENU -------------------------------------------------------------------------------------------->
+<!-- 
+    <script>
+    //   var currentlyActive = "home"
+
+    //   function loadHome(){
+    //     if(currentlyActive != "home")
+    //       document.getElementById(`${currentlyActive}`).style.display = "none"
+    //     document.getElementById("home").display = "block"
+    //   }
+
+    //   function loadMap(){
+    //     if(currentlyActive != "map")
+    //       document.getElementById(`${currentlyActive}`).style.display = "map"
+    //     document.getElementById("map").display = "map"
+    //   }
+
+     
+
+
+      var map = L.map("map").setView([51.505, -0.09], 6);
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+      ).addTo(map);
+
+      // Marker icon boilerplate
+      function createCustomIcon(iconUrl, iconSize, iconAnchor, popupAnchor) {
+        return L.icon({
+          iconUrl: iconUrl, // Path to icon
+          iconSize: iconSize, // Size of icon [x, y]
+          iconAnchor: iconAnchor, // Anchor of icon [x, y]
+          popupAnchor: popupAnchor, // Anchor of popup [x, y]
+        });
+      }
+
+      var currentLocationIcon = createCustomIcon(
+        "icons/current.svg",
+        [32, 32],
+        [16, 16],
+        [0, -16]
+      ); // Icon for current location of the user
+      var checkpointLocationIcon = createCustomIcon(
+        "icons/checkpoint.svg",
+        [32, 32],
+        [16, 16],
+        [0, -16]
+      ); // Icon for a checkpoint
+
+      L.marker([51.5, -0.09], { icon: currentLocationIcon }).addTo(map);
+
+      const userLocation = L.marker([0.0, 0.0], {
+        icon: currentLocationIcon,
+      }).addTo(map);
+      let uLon, uLan;
+
+      // Get the user's location using the Geolocation API
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Set the marker's position to the user's location
+          userLocation.setLatLng([
+            position.coords.latitude,
+            position.coords.longitude,
+          ]);
+
+          // Set the map's view to the user's location
+          map.setView(
+            [position.coords.latitude, position.coords.longitude],
+            13
+          );
+        //   uLan = position.coords.latitude;
+        //   uLon = position.coords.longitude;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+
+      var control = L.Routing.control({
+        options: [
+          {
+            routeWhileDragging: true, // Alows dynamically redrawing of the route
+          },
+        ],
+        waypoints: [
+          // Waypoints of the route
+          // L.latLng(userLocation.latitude, userLocation.longitude),
+          L.latLng(52.23163710555889, 21.020493507385257),
+          L.latLng(52.2163710555889, 21.040493507385257),
+        ],
+
+        lineOptions: {
+          // Options for the line between the waypoints
+          styles: [{ color: "purple", opacity: 0.7, weight: 8 }],
+        },
+
+        createMarker: function (i, waypoint, n) {
+          // i is the i-th checkpoint, n is the number of waypoints
+          // Adding checkpointLocationIcon marker to the waypoints
+          return L.marker(waypoint.latLng, {
+            icon: checkpointLocationIcon,
+          }).addTo(map);
+        },
+      }).addTo(map);
+    </script> -->
+  </body>
+</html>
