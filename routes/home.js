@@ -5,7 +5,7 @@ const isLoggedIn = (req, res, next) => {
     next();
   } else {
     // next();
-    res.redirect("/login");
+    res.redirect("/login"); 
   }
 };
 router.get("/", isLoggedIn, (req, res) => {
