@@ -1,5 +1,10 @@
 body {
+    height: 100%;
     padding-top: calc(100vh / 9);
+}
+html{
+  height: 100%;
+  width: 100%;
 }
 
 #bottom-menu {
@@ -38,10 +43,8 @@ body {
 
 #user-pic {
     aspect-ratio: 1 / 1;
-
     width: auto;
     height: 100%;
-
     border-radius: 50%;
     background-color: #404040;
 }
@@ -54,30 +57,25 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     position: fixed;
     top: 0px;
     left: 0px;
-
     width: 100%;
-    height: calc(100vh / 9);
-
-    border-bottom: calc(100vh / 852) solid #202020;
+    height: 10vh;
+    border-bottom: 1px solid #202020;
 }
 
 #top-menu #logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    width: calc(100vw / 4);
-    height: 100%;
-
-    padding: 0px calc(100vw / 14);
+    width: 70vw;
+    height: 70vh;
+    padding: 5%;
 }
 #top-menu #logo svg {
-    width: 100%;
-    height: auto;
+    width: 20%;
+    height: 20%;
 }
 
 #top-menu #credits {
@@ -128,6 +126,20 @@ body {
     max-width: 400px;
     margin-bottom: 20px;
   }
+    #map {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: calc(100% - (2 * (100vh / 9)));
+
+    /* border-top: calc(100vh / 852) solid #202020; */
+  } 
 
   #progress {
     width: 100%;
