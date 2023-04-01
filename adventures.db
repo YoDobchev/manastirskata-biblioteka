@@ -1,24 +1,4 @@
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"3JwHw4MxsZLQyNen"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"4HEnR0z3aqA0I6De"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"7cKMkiZdz9PWlbl8"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"DYteY2aexexe9Ike"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"EOSONSEvfOQJq2Rs"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"GH5vjaUkmUCWHMOt"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"HYzcvKvRRl6h5o4o"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"J9GWGC9mXhWBIg7n"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"JENtHiTvjshZ9olh"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"MVyfKX2waiXzMtCS"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"R4Vw3Fdj8DYKbAVz"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"VeRglvv0SH6vqISq"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"VnNde9Qxnefy0z08"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"Ws7E0oSbcv5R1QnU"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"b6rT4KDVst2GpbmV"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"euidKIOrhKvSuMhe"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"kBNoDCm4LhbfbhZK"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"qwuTuaruk10KCcgZ"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"uXhzosFVAakpSOwi"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"vNbgPVGB1W7sNvRb"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"vbv94Hvw9MT78Ukj"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"zCMG57OgKdRri7tH"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"DzSJ09liI6WmQPws"}
-{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"9tGtQCITjwdrq3OL"}
+{"name":"Monasite test nomer 13","Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"locations":[{"latitude":42.0343,"longitude":23.11483},{"latitude":42.0267,"longitude":23.0971},{"latitude":42.0227,"longitude":23.0903},{"latitude":42.0312,"longitude":23.0808}],"_id":"8ZOoNoWdJxpio8R8"}
+{"name":"Monasite test nomer 6","Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"locations":[{"latitude":42.0343,"longitude":23.11483},{"latitude":42.0267,"longitude":23.0971},{"latitude":42.0227,"longitude":23.0903},{"latitude":42.0312,"longitude":23.0808}],"_id":"8xymz9kY6ED24BSM"}
+{"name":"Monasite test nomer 2","Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"locations":[{"latitude":42.0343,"longitude":23.11483},{"latitude":42.0267,"longitude":23.0971},{"latitude":42.0227,"longitude":23.0903},{"latitude":42.0312,"longitude":23.0808}],"_id":"mTHeCVCHveYSn7ZD"}
+{"name":"Monasite test nomer 7","Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"locations":[{"latitude":42.0343,"longitude":23.11483},{"latitude":42.0267,"longitude":23.0971},{"latitude":42.0227,"longitude":23.0903},{"latitude":42.0312,"longitude":23.0808}],"_id":"0ZpmZOooyhP9ITjt"}
