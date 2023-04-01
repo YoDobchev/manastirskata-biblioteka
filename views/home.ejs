@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Mobile Page</title>
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-      crossorigin=""
-    />
-
-    <!-- <link rel="stylesheet" href="/styles/index.css" type="text/css" /> -->
-    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
-
-    <script
-      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-      crossorigin=""
-    ></script>
+<head>
+    <title>Nebulous</title>
+    <link rel="icon" href="icons/logo.svg" type="image/icon type">
+    <!-------- LEAFLET CSS -------->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    
+    <!-------- LEAFLET JS -------->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    
+    <!-------- LEAFLET ROUTING MACHINE -------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
-
-
-  </style> -->
-  </head>
+    
+    <!-------- STYLESHEET -------->
+    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+  </style>
+</head>
 
   <body>
     <div id="top-menu">
@@ -72,91 +65,89 @@
       </div>
     </div>
 
-    <div class="ss-block">
-      <h1 id="adventures">Adventures near you</h1>
-    </div>
     <div id="map">
       <script>
-      
-        var map = L.map("map").setView([51.505, -0.09], 13);
-        L.tileLayer(
-          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-          {
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          }
-        ).addTo(map);
-        var currentLocationIcon = L.icon({
-        
-          iconUrl: "icons/current.svg",
-          iconSize: [32, 32],
-          iconAnchor: [16, 16],
-          popupAnchor: [0, -16]
-              
-        });
-    
-        L.marker([51.5, -0.09], {icon: currentLocationIcon}).addTo(map);
-    
-        const userLocation = L.marker([0.0, 0.0], {
-          icon: currentLocationIcon,
-        }).addTo(map);
-        let uLon, uLan;
-        // Get the user's location using the Geolocation API
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            // Set the marker's position to the user's location
-            userLocation.setLatLng([
-              position.coords.latitude,
-              position.coords.longitude,
-            ]);
-            // Set the map's view to the user's location
-            map.setView([position.coords.latitude, position.coords.longitude], 13);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-        // */
-        //     const userLocation = L.marker([0.0, 0.0], { icon: currentIcon }).addTo(
-        //       map
-        //     );
-        // // Get the user's location using the Geolocation API
-        // navigator.geolocation.getCurrentPosition(
-        //   (position) => {
-        //     // Set the marker's position to the user's location
-        //     userLocation.setLatLng([
-        //       position.coords.latitude,
-        //       position.coords.longitude,
-        //     ]);
-        //     // Set the map's view to the user's location
-        //     map.setView(
-        //       [position.coords.latitude, position.coords.longitude],
-        //       13
-        //     );
-        //   },
-        //   (error) => {
-        //     console.error(error);
-        //   }
-        // // );
-        // var lat, lng;
-        // navigator.geolocation.getCurrentPosition(function (position) {
-        //     lat = position.coords.latitude;
-        //     lng = position.coords.longitude;
-        //   console.log("Latitude: " + lat + " Longitude: " + lng);
-        //   //L.marker([lat, lng]).addTo(map);
-        // });
-    
-        // var control = L.Routing.control({
-        //   waypoints: [
-        //     L.latLng(lat, lng),
-        //     L.latLng(52.23163710555889, 21.020493507385257),
-        //   ],
-        //   lineOptions: {
-        //     styles: [{ color: "purple", opacity: 0.7, weight: 8 }],
-        //   },
-        // }).addTo(map);
+        var map = L.map("map").setView([51.505, -0.09], 6);
+L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+).addTo(map);
+
+// Marker icon boilerplate 
+function createCustomIcon(iconUrl, iconSize, iconAnchor, popupAnchor) {
+  return L.icon({
+    iconUrl: iconUrl,           // Path to icon
+    iconSize: iconSize,         // Size of icon [x, y]
+    iconAnchor: iconAnchor,     // Anchor of icon [x, y]
+    popupAnchor: popupAnchor,   // Anchor of popup [x, y]
+  });
+}
+
+var currentLocationIcon = createCustomIcon( 
+  "icons/current.svg",
+  [32, 32],
+  [16, 16],
+  [0, -16]
+); // Icon for current location of the user
+var checkpointLocationIcon = createCustomIcon( 
+  "icons/checkpoint.svg",
+  [32, 32],
+  [16, 16],
+  [0, -16]
+); // Icon for a checkpoint
+
+L.marker([51.5, -0.09], { icon: currentLocationIcon }).addTo(map);
+
+const userLocation = L.marker([0.0, 0.0], {
+  icon: currentLocationIcon,
+}).addTo(map);
+let uLon, uLan;
+
+// Get the user's location using the Geolocation API
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+
+    // Set the marker's position to the user's location
+    userLocation.setLatLng([
+      position.coords.latitude,
+      position.coords.longitude,
+    ]);
+
+    // Set the map's view to the user's location
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
+    uLan = position.coords.latitude;
+    uLon = position.coords.longitude;
+  },
+  (error) => {
+    console.error(error);
+  }
+);
+
+var control = L.Routing.control({
+  options: [
+    {
+      routeWhileDragging: true, // Alows dynamically redrawing of the route
+    },
+  ],
+  waypoints: [ // Waypoints of the route
+    // L.latLng(userLocation.latitude, userLocation.longitude),
+    L.latLng(52.23163710555889, 21.020493507385257),
+    L.latLng(52.2163710555889, 21.040493507385257),
+  ],
+
+  lineOptions: { // Options for the line between the waypoints
+    styles: [{ color: "purple", opacity: 0.7, weight: 8 }],
+  },
+
+  createMarker: function (i, waypoint, n) {
+    // i is the i-th checkpoint, n is the number of waypoints
+    // Adding checkpointLocationIcon marker to the waypoints
+    return L.marker(waypoint.latLng, { icon: checkpointLocationIcon }).addTo(map);
+  },
+}).addTo(map);
+
       </script>
     </div>
+
     
     <div id="bottom-menu">
       <div class="bm-item sel">
@@ -280,6 +271,9 @@
     </div>
 
     
+        
+
+
   </body>
   
 </html>
