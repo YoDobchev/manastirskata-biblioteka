@@ -5,7 +5,7 @@ const session = require("express-session");
 const port = 3000;
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json({ limit: "1mb" });
-
+app.use(express.static(__dirname + '/public'));
 app.use(jsonParser);
 app.set("view engine", "ejs");
 const db = require("./db.js");
