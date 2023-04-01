@@ -14,6 +14,8 @@ router.post("/", (req, res) => {
     .createHash("sha256")
     .update(req.body.password)
     .digest("hex");
+  req.session.user = req.body.username;
+
   // check username and password
   db.users.findOne({ username: req.body.username }, (err, docs) => {
     if (!docs || err) {
