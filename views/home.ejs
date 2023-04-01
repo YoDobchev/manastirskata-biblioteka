@@ -147,15 +147,35 @@
       }).addTo(map);
 
       // Get the user's location using the Geolocation API
-      navigator.geolocation.getCurrentPosition(position => {
-        // Set the marker's position to the user's location
-        userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
+      setInterval(()=>{
+  navigator.geolocation.getCurrentPosition(position => {
+    // Set the marker's position to the user's location
+    userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
 
-        // Set the map's view to the user's location
-        map.setView([position.coords.latitude, position.coords.longitude], 13);
-      }, error => {
-        console.error(error);
-      });
+    // Set the map's view to the user's location
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
+
+    // Send locationEvent POST request
+    fetch('/locationEvent', {
+      method: 'POST',
+      body: JSON.stringify({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log('Location event sent successfully.');
+    })
+    .catch(error => {
+      console.error('Error sending location event:', error);
+    });
+  }, error => {
+    console.error(error);
+  });
+}, 1000);
 
 
       var marker = L.marker([51.5, -0.09], {
