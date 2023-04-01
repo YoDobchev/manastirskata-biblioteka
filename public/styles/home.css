@@ -1,5 +1,6 @@
 body {
     height: 100%;
+    padding-top: calc(100vh / 9);
 }
 html{
   height: 100%;
@@ -10,20 +11,28 @@ html{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: absolute;
+
+    position: fixed;
     bottom: 0px;
     left: 0px;
+
     width: 100%;
-    height: 8.5vh;
+    height: calc(100vh / 9);
+
+    border-top: calc(100vh / 852) solid #202020;
 }
+
 
 #bottom-menu .bm-item {
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100%;
     height: 100%;
-    padding: 1vh;
+
+    border-right: calc(100vh / 852) solid #202020;
+    padding: calc(100vh / 34) 0px;
 }
 #bottom-menu .bm-item:last-of-type {
     border-right: none;
@@ -35,22 +44,13 @@ html{
 #user-pic {
     aspect-ratio: 1 / 1;
     width: auto;
-    height: 90%;
+    height: 100%;
     border-radius: 50%;
     background-color: #404040;
 }
-#bottom-menu{
-  background-color: black;
-}
-
 #bottom-menu .bm-item svg {
     width: auto;
     height: 80%;
-}
-
-#adventures {
-    position: relative;
-    bottom: 20%;
 }
 
 #top-menu {
@@ -63,24 +63,19 @@ html{
     width: 100%;
     height: 10vh;
     border-bottom: 1px solid #202020;
-    box-sizing: border-box;
-    color: white;
-    background-color: black;
-    font-family: GT;
-    overflow-x: hidden;
 }
 
 #top-menu #logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 9.5vw;
-    height: 11vh;
+    width: 70vw;
+    height: 70vh;
     padding: 5%;
 }
 #top-menu #logo svg {
-    width: 100%;
-    height: 100%;
+    width: 20%;
+    height: 20%;
 }
 .leaflet-routing-alt{
   display: none;
@@ -90,20 +85,25 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: fit-content;
     height: 100%;
-    padding-right: 5vw;
+
+    padding-right: calc(100vw / 10);
 }
 #top-menu #credits label {
     display: block;
     margin-right: calc(100vw / 19);
+
     font-size: calc(100vw / 19);
     font-weight: 700;
 }
 
+
 h1 {
     font-size: calc(100vw / 19);
     font-weight: 700;
+
     margin-top: calc(100vh / 16);
     margin-bottom: calc(100vh / 21);
     margin-left: calc(100vh / 23);
@@ -163,7 +163,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: black;
   }
 
   .button {
@@ -172,7 +171,22 @@ body {
     margin: 0 10px;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);    
-}
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
 
-  
+  .button:nth-child(1) {
+    background-color: #f44336;
+  }
+
+  .button:nth-child(2) {
+    background-color: #e91e63;
+  }
+
+  .button:nth-child(3) {
+    background-color: #2196f3;
+  }
+
+  .button:nth-child(4) {
+    background-color: #4caf50;
+  }
+

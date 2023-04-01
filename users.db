@@ -1,1 +1,6 @@
-{"username":"myuser","password":"89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8","location":{"latitude":0,"longitude":0},"_id":"pEzuWDLQ1Drurl4M"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":0,"longitude":0},"currentAdventure":null,"_id":"BHXzVSnUUQ69qMvH"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":42.0230768,"longitude":23.0851869},"currentAdventure":null,"_id":"BHXzVSnUUQ69qMvH"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":42.0230768,"longitude":23.0851869},"currentAdventure":null,"_id":"BHXzVSnUUQ69qMvH"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":42.0230768,"longitude":23.0851869},"currentAdventure":null,"_id":"BHXzVSnUUQ69qMvH"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":42.0230768,"longitude":23.0851869},"currentAdventure":null,"_id":"BHXzVSnUUQ69qMvH"}
+{"username":"elo","password":"fd7275bbea343cb9700fc158597fe6737d8a15b7b31b94a9545fc59eb5899ab1","location":{"latitude":42.0230768,"longitude":23.0851869},"currentAdventure":{"progressIndex":0,"tokens":0},"_id":"BHXzVSnUUQ69qMvH"}

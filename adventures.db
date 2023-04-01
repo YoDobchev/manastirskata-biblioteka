@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"11TfbcD6P2JCCOOF"}
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"1TmUb7M3ISvDBlm6"}
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"2Guxsf7FlRl7h6mG"}
@@ -34,3 +35,7 @@
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"zRTppFss5OTBF9IP"}
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"1ADLw8JmD4vb8gY8"}
 {"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"1cFOgAAXAyWNXwwj"}
+=======
+{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"_id":"n6DGYq4vRf1NvYRT"}
+{"Startlocation":{"type":"Point","coordinates":[42.0230861,23.0854894]},"locations":[{"latitude":42.0230861,"longitude":23.0854894},{"latitude":42.0227891,"longitude":23.0876455},{"latitude":42.0234561,"longitude":23.0883456}],"_id":"CTK5BnE4A86ScM1b"}
+>>>>>>> 2346e294eac3201bd629e1f0d1030314caac45ac

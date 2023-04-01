@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-------- LEAFLET ROUTING MACHINE -------->
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
     
     <!-------- STYLESHEET -------->
@@ -144,6 +145,41 @@ var control = L.Routing.control({
     return L.marker(waypoint.latLng, { icon: checkpointLocationIcon }).addTo(map);
   },
 }).addTo(map);
+setInterval(() => {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      // Make a POST request to the endpoint with the user's location
+      fetch('/locationEvent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      })
+      .then(response => {
+        // Handle the response if necessary
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      
+      // Set the marker's position to the user's location
+      userLocation.setLatLng([
+        position.coords.latitude,
+        position.coords.longitude,
+      ]);
+      // Set the map's view to the user's location
+      map.setView([position.coords.latitude, position.coords.longitude], 13);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}, 2000);
+
 
       </script>
     </div>
