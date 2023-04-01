@@ -7,26 +7,16 @@ body {
     justify-content: space-evenly;
     align-items: center;
 
-    z-index: 2;
     position: fixed;
     bottom: 0px;
     left: 0px;
 
     width: 100%;
     height: calc(100vh / 9);
-    background-color: black;
 
     border-top: calc(100vh / 852) solid #202020;
 }
 
-#map{
-  color: none;
-  display: block; 
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
 
 #bottom-menu .bm-item {
     display: flex;
@@ -38,15 +28,6 @@ body {
 
     border-right: calc(100vh / 852) solid #202020;
     padding: calc(100vh / 34) 0px;
-    cursor: pointer;
-    transition: 1s;
-
-}
-
-#bottom-menu .bm-item:hover{
-    height: 120%;
-    transition: 1s;
-    background-color: white;
 }
 #bottom-menu .bm-item:last-of-type {
     border-right: none;
@@ -68,19 +49,12 @@ body {
     width: auto;
     height: 80%;
 }
-.leaflet-right{
-  display: none;
-}
-.leaflet-left{
-  display: none;
-}
 
 #top-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    z-index: 100;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -123,6 +97,11 @@ body {
     font-size: calc(100vw / 19);
     font-weight: 700;
 }
+#top-menu #credits svg {
+    aspect-ratio: 1 / 1;
+    max-width: calc(100vw / 14);
+    height: auto;
+}
 
 
 h1 {
@@ -145,7 +124,7 @@ h1 {
     display: flex;
 
     width: 100%;
-    height: 500px;
+    height: fit-content;
 
     /* background-color: blue; */
 
@@ -258,3 +237,5 @@ h1 {
 .ssib-cont label {
     font-size: calc(100vw / 28);
 }
+
+
