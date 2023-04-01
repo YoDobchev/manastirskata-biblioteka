@@ -18,7 +18,7 @@ app.use(
     resave: false,
   })
 );
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 const isLoggedIn = (req, res, next) => {
   if (req.session.ID) {
     next();
@@ -29,30 +29,56 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 app.get("/", isLoggedIn, (req, res) => {
+  console.log(req.query.hello);
   res.redirect("/home");
 });
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-
-///
-db.adventures.insert({
-  Startlocation: {
-    type: "Point",
-    coordinates: [42.0230861, 23.0854894],
-  },
-});
-//for debugging
-//
-
 app.post("/locationEvent", isLoggedIn, (req, res) => {
-  console.log(req.body);
+  let oldLocation;
+  let newDist;
+  let oldDist;
+  db.users.findOne({ username: req.session.user }, (err, docs) => {
+    if (!err) {
+      if (docs.currentAdventure != null) {
+        oldLocation = docs.location;
+        let newLocation = req.body;
+        let nextGoal;
+        db.adventures.findOne(
+          { ID: docs.currentAdventure.ID },
+          (err, docsad) => {
+            nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
+            oldDist = Math.hypot(
+              oldLocation.latitude - nextGoal.latitude,
+              oldLocation.longitude - nextGoal.longitude
+            );
+            newDist = Math.hypot(
+              newLocation.latitude - nextGoal.latitude,
+              newLocation.longitude - nextGoal.longitude
+            );
+            console.log(newDist, oldDist);
+
+            if (newDist < oldDist) {
+              db.users.updateOne(
+                { username: req.session.user },
+                { $inc: { tokens: newDist - oldDist } }
+              );
+            }
+          }
+        );
+      }
+    }
+  });
+
   db.users.update(
     { username: req.session.user },
     { $set: { location: req.body } },
     {},
     (err) => {}
   );
+
+  res.json({ delta: newDist - oldDist });
 });
 app.use("/login", require("./routes/login.js"));
 app.use("/signup", require("./routes/signup.js"));
