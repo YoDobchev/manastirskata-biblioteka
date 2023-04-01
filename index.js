@@ -67,7 +67,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
         let newLocation = req.body;
         let nextGoal;
         db.adventures.findOne(
-          { ID: docs.currentAdventure.ID },
+          { _idf: docs.currentAdventure.ID },
           (err, docsad) => {
             nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
             oldDist = Math.hypot(
