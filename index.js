@@ -40,16 +40,16 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
   let newDist;
   let oldDist;
   console.log(req.body);
-  db.users.findOne({ username: req.session.user }, (err, docs) => {
+  db.users.findOne({ username: req.session.user }, (err, user) => {
     if (!err) {
-      if (docs.currentAdventure != null) {
+      if (user.currentAdventure != null) {
         oldLocation = docs.location;
         let newLocation = req.body;
         let nextGoal;
         db.adventures.findOne(
-          { ID: docs.currentAdventure.ID },
-          (err, docsad) => {
-            nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
+          { ID: user.currentAdventure.ID },
+          (err, userAdventure) => {
+            nextGoal = userAdventure.locations[user.currentAdventure.progressIndex];
             oldDist = Math.hypot(
               oldLocation.latitude - nextGoal.latitude,
               oldLocation.longitude - nextGoal.longitude

@@ -27,7 +27,7 @@
 
 
 svg {
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 
 html {
@@ -48,6 +48,7 @@ button {
     border: none;
     text-decoration: none;
 }
+
 
 /* h1 {
     margin: 0px;

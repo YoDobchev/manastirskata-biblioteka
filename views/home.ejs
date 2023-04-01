@@ -24,7 +24,7 @@
     <div id="bottom-menu">
 
       <!---------------------------- HOME BUTTON ---------------------------->
-      <div class="bm-item sel <%= activePage === 'home' ? 'active' : '' %>" id="home">
+      <div class="bm-item sel <%= activePage === 'home' ? 'active' : '' %>" id="home" >
         <a href="/home">
           <svg width="91" height="91" viewBox="0 0 91 91" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.802 82.2062V36.1763L45.023 3.95532L77.2439 36.1763V82.2062C77.2439 83.427 76.759 84.5978 75.8957 85.461C75.0325 86.3243 73.8617 86.8092 72.6409 86.8092H17.405C16.1842 86.8092 15.0134 86.3243 14.1502 85.461C13.287 84.5978 12.802 83.427 12.802 82.2062Z" fill="#DF84FF" stroke="#BD00FF" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,18 +53,33 @@
       
 
       <!---------------------------MARKET-------------------------------------->
-      <div class="bm-item" id="market">
-        <svg width="91" height="91" viewBox="0 0 91 91" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.48364 21.0039H85.7464V37.2565L82.9022 38.963C80.6927 40.2879 78.1648 40.9878 75.5885 40.9878C73.0123 40.9878 70.4844 40.2879 68.2749 38.963L65.4307 37.2565L62.5865 38.963C60.377 40.2879 57.8491 40.9878 55.2729 40.9878C52.6966 40.9878 50.1687 40.2879 47.9592 38.963L45.115 37.2565L42.2708 38.963C40.0613 40.2879 37.5335 40.9878 34.9572 40.9878C32.3809 40.9878 29.853 40.2879 27.6435 38.963L24.7993 37.2565L21.9551 38.963C19.7457 40.2879 17.2178 40.9878 14.6415 40.9878C12.0652 40.9878 9.53731 40.2879 7.32784 38.963L4.48364 37.2565V21.0039Z" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12.6099 42.3107V86.0138H77.6201V41.3193" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12.6099 20.6419V4.75098H77.6201V21.0035" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M55.2725 61.6355H34.9568V86.0143H55.2725V61.6355Z" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+      <div class="bm-item <%= activePage === 'shop' ? 'active' : '' %>" id="market">
+        <a href="/shop">
+          <svg width="91" height="91" viewBox="0 0 91 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.48364 21.0039H85.7464V37.2565L82.9022 38.963C80.6927 40.2879 78.1648 40.9878 75.5885 40.9878C73.0123 40.9878 70.4844 40.2879 68.2749 38.963L65.4307 37.2565L62.5865 38.963C60.377 40.2879 57.8491 40.9878 55.2729 40.9878C52.6966 40.9878 50.1687 40.2879 47.9592 38.963L45.115 37.2565L42.2708 38.963C40.0613 40.2879 37.5335 40.9878 34.9572 40.9878C32.3809 40.9878 29.853 40.2879 27.6435 38.963L24.7993 37.2565L21.9551 38.963C19.7457 40.2879 17.2178 40.9878 14.6415 40.9878C12.0652 40.9878 9.53731 40.2879 7.32784 38.963L4.48364 37.2565V21.0039Z" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.6099 42.3107V86.0138H77.6201V41.3193" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.6099 20.6419V4.75098H77.6201V21.0035" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M55.2725 61.6355H34.9568V86.0143H55.2725V61.6355Z" stroke="#404040" stroke-width="4.50071" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
       </div>
 
       <!--------------------------------PROFILE---------------------------------------->
-      <div class="bm-item" id="profile">
-          <div id="user-pic"></div>
+      <div class="bm-item <%= activePage === 'profile' ? 'active' : '' %>" id="profile" href="/profile">
+        <a href="/profile">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_4_235)">
+            <path d="M7 5.6875C7.30163 5.6875 7.60031 5.62809 7.87898 5.51266C8.15765 5.39723 8.41085 5.22805 8.62414 5.01476C8.83742 4.80148 9.00661 4.54827 9.12204 4.2696C9.23746 3.99093 9.29688 3.69225 9.29688 3.39062C9.29688 3.089 9.23746 2.79032 9.12204 2.51165C9.00661 2.23298 8.83742 1.97977 8.62414 1.76649C8.41085 1.5532 8.15765 1.38402 7.87898 1.26859C7.60031 1.15316 7.30163 1.09375 7 1.09375C6.39083 1.09375 5.80661 1.33574 5.37586 1.76649C4.94512 2.19724 4.70313 2.78146 4.70312 3.39062C4.70313 3.99979 4.94512 4.58401 5.37586 5.01476C5.80661 5.44551 6.39083 5.6875 7 5.6875Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1.09375 12.5125V12.9062H12.9062V12.5125C12.9062 11.0425 12.9062 10.3075 12.6201 9.74575C12.3685 9.25185 11.9669 8.85029 11.473 8.59862C10.9112 8.3125 10.1763 8.3125 8.70625 8.3125H5.29375C3.82375 8.3125 3.08875 8.3125 2.527 8.59862C2.0331 8.85029 1.63154 9.25185 1.37988 9.74575C1.09375 10.3075 1.09375 11.0425 1.09375 12.5125Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_4_235">
+            <rect width="14" height="14" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>  
+            
+        </a>  
       </div>
       <!------------------------------------------------------------------------------->
     </div>
@@ -136,12 +151,14 @@
                   <label for="">2000</label>
                 </div>
                 <div class="ssib-item">
+
                   <svg width="43" height="49" viewBox="0 0 43 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.0263 44.1508C25.579 44.1508 29.9453 42.3595 33.1646 39.1709C36.3838 35.9823 38.1924 31.6576 38.1924 27.1482C38.1924 22.6388 36.3838 18.3141 33.1646 15.1255C29.9453 11.9369 25.579 10.1455 21.0263 10.1455C16.4735 10.1455 12.1072 11.9369 8.88796 15.1255C5.66868 18.3141 3.86011 22.6388 3.86011 27.1482C3.86011 31.6576 5.66868 35.9823 8.88796 39.1709C12.1072 42.3595 16.4735 44.1508 21.0263 44.1508Z" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M28.0951 4.14417H13.9583" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M35.1632 10.1455L32.134 13.1458" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M21.0264 18.1467V27.1481" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
+
                   <label for="">35:00</label>
                 </div>
               </div>
@@ -184,16 +201,18 @@
       </div>
     </div>
     <% } else if (activePage === "map") { %>
-    <div id="map"></div>
+      <div id="map"></div>
     <% } else if (activePage === "profile") { %>
-    <div id="profile" style="width: 100%; height: 100%; position: absolute"></div>
+      <p>kur😒 rawr</p>
+      <div id="profile" style="width: 100%; height: 100%; position: absolute"></div>
     <% } %>
 
-    <script>
+    <script>      
       // Check for desktop users, if one is detected then the website denies access and puts up a message
             if (!/Mobi/.test(navigator.userAgent)) {
               document.body.innerHTML = "<div style='display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #303030; color: white; position: absolute; font-size: 40px'; text-align: center;><center>Website intended only for mobile devices :( </center><div>"
             } else {
+              var map = L.map("map").setView([51.505, -0.09], 6);
               // Setting dark themed tile laa<yer for the map
               L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -210,7 +229,7 @@
               }
 
               var currentLocationIcon = createCustomIcon(
-                "icons/current.svg",
+                "icons/home.svg",
                 [32, 32],
                 [16, 16],
                 [0, -16]
@@ -259,10 +278,11 @@
                   },
                 ],
                 waypoints: [
+                  
                   // Waypoints of the route
-                  // L.latLng(userLocation.latitude, userLocation.longitude),
-                  L.latLng(52.23163710555889, 21.020493507385257),
-                  L.latLng(52.2163710555889, 21.040493507385257),
+                  L.latLng(userLocation.latitude, userLocation.longitude),
+                  // L.latLng(42.00647382212377, 23.08437885740564),
+                  L.latLng(42.00474787115054, 23.082715482071006),
                 ],
 
                 lineOptions: {
@@ -283,18 +303,26 @@
               document.querySelector("#map").addEventListener("click", () => {
                 console.log("click");
               });
+              console.log(document.querySelector(".bm-item.sel"))
 
               for (item of document.querySelectorAll(".bm-item")) {
-                item.addEventListener("onclick", () => {
-                  console.log("dob");
-                  item.classList.add("sel");
-                  for (otherItems of document.querySelectorAll(".bm-item")) {
-                    if (otherItems != item) {
-                      otherItems.classList.remove("sel");
-                    }
-                  }
-                });
-              }
+                 item.addEventListener("click", () => {
+                   item.classList.add("sel");            
+                  //const selectedBmName = '<%= activePage %>';
+                  const alreadySelected = document.querySelector(".bm-item.sel");
+                  alreadySelected.classList.remove('sel');
+                  
+                  // console.log("dob");
+                  // item.classList.add("sel"); //item.iconUrl=;
+                  // for (otherItems of document.querySelectorAll(".bm-item")) {
+                  //   if (otherItems != item) {
+                  //     otherItems.classList.remove("sel");
+                  //   }
+                  // }` 
+                  });
+                }
+              
+              
               setInterval(() => {
                 navigator.geolocation.getCurrentPosition(
                   async (position) => {
@@ -306,7 +334,7 @@
                     fetch("/locationEvent", {
                       method: "POST",
                       body: JSON.stringify({
-                        latitude: position.coords.latitude,
+                        latitude: position.coords.latitude, 
                         longitude: position.coords.longitude,
                       }),
                       headers: {
