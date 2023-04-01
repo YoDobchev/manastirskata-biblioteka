@@ -10,6 +10,7 @@ router.use(urlencodedParser, (req, res, next) => {
       console.log(err);
       return res.sendStatus(500);
     }
+    req.user = docs;
     const userLocation = docs.location;
     console.log(JSON.stringify(docs));
     const threshold = 5;
@@ -44,7 +45,11 @@ router.get("/nearyou", (req, res) => {
   res.render("nearyou.ejs", { advs: req.nearbyAdvs });
 });
 router.get("/mapPage", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "map" });
+  res.render("home.ejs", {
+    advs: req.nearbyAdvs,
+    activePage: "map",
+    user: req.user,
+  });
 });
 router.get("/map", (req, res) => {
   res.render("map.ejs");
