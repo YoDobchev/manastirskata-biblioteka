@@ -24,6 +24,9 @@
 
     overflow-x: hidden;
 }
+svg {
+    background-color: transparent;
+}
 
 body {
     margin: 0px;
@@ -36,5 +39,9 @@ button {
     text-decoration: none;
 }
 
-
+h1 {
+    margin: 0px;
+    padding: 0px;
+    
+}
 

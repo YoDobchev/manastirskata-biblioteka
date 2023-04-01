@@ -72,7 +72,7 @@ label {
     height: fit-content;
 
 
-    padding: calc((100vh / 44)*2);
+    padding: 0px calc((100vh / 44)*2);
 }
 
 
