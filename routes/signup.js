@@ -19,6 +19,7 @@ router.post("/", (req, res) => {
       console.log("ok");
       db.users.insert({
         username: req.body.username,
+        tokens: 0,
         password: crypto
           .createHash("sha256")
           .update(req.body.password)

@@ -12,7 +12,7 @@ router.use(urlencodedParser, (req, res, next) => {
     }
     const userLocation = docs.location;
     console.log(userLocation);
-    const threshold = 0.5;
+    const threshold = 5;
     //about 5-6 kilometers
 
     db.adventures.find({}, (err, docs) => {
@@ -20,6 +20,7 @@ router.use(urlencodedParser, (req, res, next) => {
         console.log(err);
         return res.sendStatus(500);
       }
+
       const filteredDocs = docs.filter((doc) => {
         const latDiff = Math.abs(
           doc.Startlocation.coordinates[0] - userLocation.latitude
@@ -27,11 +28,11 @@ router.use(urlencodedParser, (req, res, next) => {
         const lonDiff = Math.abs(
           doc.Startlocation.coordinates[1] - userLocation.longitude
         );
-        console.log(latDiff, lonDiff);
+        console.log(latDiff, lonDiff + "diff");
         return latDiff <= threshold && lonDiff <= threshold;
       });
       req.nearbyAdvs = filteredDocs;
-      console.log(filteredDocs);
+      console.log(filteredDocs + "eee");
       next();
     });
   });

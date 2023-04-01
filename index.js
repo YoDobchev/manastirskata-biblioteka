@@ -39,6 +39,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
   let oldLocation;
   let newDist;
   let oldDist;
+  console.log(req.body);
   db.users.findOne({ username: req.session.user }, (err, docs) => {
     if (!err) {
       if (docs.currentAdventure != null) {
@@ -58,7 +59,6 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
               newLocation.longitude - nextGoal.longitude
             );
             console.log(newDist, oldDist);
-
             if (newDist < oldDist) {
               db.users.updateOne(
                 { username: req.session.user },
@@ -70,14 +70,12 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
       }
     }
   });
-
   db.users.update(
     { username: req.session.user },
     { $set: { location: req.body } },
     {},
     (err) => {}
   );
-
   res.json({ delta: newDist - oldDist });
 });
 app.use("/login", require("./routes/login.js"));
