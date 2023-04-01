@@ -7,6 +7,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
 
+    z-index: 100;
     position: fixed;
     bottom: 0px;
     left: 0px;
@@ -17,6 +18,13 @@ body {
     border-top: calc(100vh / 852) solid #202020;
 }
 
+#map{
+  color: none;
+  display: block; 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
 #bottom-menu .bm-item {
     display: flex;
@@ -49,12 +57,19 @@ body {
     width: auto;
     height: 80%;
 }
+.leaflet-right{
+  display: none;
+}
+.leaflet-left{
+  display: none;
+}
 
 #top-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    z-index: 100;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -232,5 +247,3 @@ h1 {
 .ssib-cont label {
     font-size: calc(100vw / 28);
 }
-
-

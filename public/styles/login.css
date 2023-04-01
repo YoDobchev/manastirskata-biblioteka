@@ -45,6 +45,7 @@ button {
     height: 100vh;
 
     background-color: black;
+    overflow-x: hidden;
 
     transition: margin-left .2s;
 }

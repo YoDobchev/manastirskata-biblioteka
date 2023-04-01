@@ -21,14 +21,18 @@
     color: white;
     /* background-color: black; */
     font-family: GT;
-
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
+
+
+
 svg {
     background-color: transparent;
 }
 
 html {
+    width: 100%;
+    height: 100%;
     width: 100%;
     height: 100%;
 }
@@ -37,7 +41,7 @@ body {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    background-color: black;
+  background-color: black;
 }
 
 button {
