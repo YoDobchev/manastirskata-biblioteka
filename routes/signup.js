@@ -17,6 +17,7 @@ router.post("/", (req, res) => {
       .createHash("sha256")
       .update(req.body.password)
       .digest("hex"),
+    location: { latitude: 0, longitude: 0 },
   });
 });
 
