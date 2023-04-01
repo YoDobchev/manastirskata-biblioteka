@@ -1,0 +1,40 @@
+@font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Black.woff2);
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Bold.woff2);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Medium.woff2);
+    font-weight: 500;
+}
+
+* {
+    box-sizing: border-box;
+    color: white;
+    background-color: black;
+    font-family: GT;
+
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
+
+button {
+    border: none;
+    text-decoration: none;
+}
+
+
+
