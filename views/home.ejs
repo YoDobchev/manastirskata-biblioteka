@@ -16,6 +16,13 @@
     <!-------- STYLESHEET -------->
     <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
   </head>
 
 
@@ -96,238 +103,65 @@
       <!--------------------------------------------->
 
     </div>
-    <!---------------------------------------------------------->
-    
-    <% if (activePage === 'home') { %>
+
     <div class="ss-container">
-      <h1>Adventures near you</h1>
-      <div class="ssc-container">
-        <% for(let i = 0; i < advs.length; i++) { %>
-        <div class="ss-block">
-          <div class="ss-item">
-            <div class="ssi-top">
-              <label for=""><%-advs[i].name%></label>
-              <div class="ssit-right">
-                <label for="">145</label>
-
-
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M80 40C80 62.0914 62.0914 80 40 80C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0C62.0914 0 80 17.9086 80 40Z" fill="#BD00FF" />
-                  <path d="M71.4289 40C71.4289 57.3575 57.3579 71.4286 40.0003 71.4286C22.6428 71.4286 8.57178 57.3575 8.57178 40C8.57178 22.6425 22.6428 8.57141 40.0003 8.57141C57.3579 8.57141 71.4289 22.6425 71.4289 40Z" fill="#DF84FF" />
-                  <path d="M40.513 55.9001C35.4122 55.9001 31.3166 54.3549 28.2261 51.2644C25.1356 48.1439 23.5904 44.1383 23.5904 39.2475C23.5904 34.3568 25.1356 30.3661 28.2261 27.2756C31.3166 24.1552 35.4122 22.5949 40.513 22.5949C45.0737 22.5949 48.7793 23.7201 51.6298 25.9704C54.5102 28.1908 56.1605 31.1763 56.5805 34.9268H48.8393C48.4193 33.1266 47.4891 31.7163 46.0489 30.6962C44.6087 29.646 42.7784 29.1209 40.558 29.1209C37.6176 29.1209 35.3222 30.0361 33.6719 31.8664C32.0217 33.6667 31.1965 36.127 31.1965 39.2475C31.1965 42.368 32.0217 44.8434 33.6719 46.6737C35.3222 48.474 37.6176 49.3741 40.558 49.3741C42.7784 49.3741 44.6087 48.864 46.0489 47.8439C47.4891 46.7937 48.4193 45.3685 48.8393 43.5682H56.5805C56.1605 47.3188 54.5102 50.3193 51.6298 52.5696C48.7793 54.79 45.0737 55.9001 40.513 55.9001Z" fill="#BD00FF" />
-                </svg>
-              
-
-              </div>
-            </div>
-            <div class="ssi-bottom">
-              <div class="ssib-cont left">
-                <div class="ssib-item">
-                  <svg width="43" height="52" viewBox="0 0 43 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_26_1352)">
-                      <path d="M2.5147 32.6442C2.79341 33.8599 3.08209 35.2971 3.38768 37.0864L15.9787 36.5598C15.6532 32.0976 16.8358 25.8162 17.7496 22.0921C18.8206 17.5062 18.9003 13.2505 15.481 9.60413C13.525 7.51267 10.6453 6.65793 7.85113 7.49072C6.00562 8.04426 4.33731 9.28398 3.11892 10.9815C0.92004 14.0563 -0.168946 18.6941 0.051041 22.4132C0.258088 26.0187 1.70941 29.1354 2.5147 32.6442ZM39.5382 25.5988C39.2595 26.8126 38.9708 28.2508 38.6653 30.038L26.0742 29.5134C26.3997 25.0503 25.2172 18.7709 24.3034 15.0477C23.2323 10.4609 23.1527 6.20513 26.5729 2.55878C30.2171 -1.3399 35.897 -0.296665 38.934 3.93514C41.1329 7.01 42.2219 11.6487 42.0019 15.3679C41.7948 18.9723 40.3435 22.0901 39.5382 25.5988ZM38.4721 32.702C38.4711 33.0192 38.4751 33.3383 38.4841 33.6585C38.496 34.1043 38.5149 34.4972 38.5339 34.8782C38.6563 37.5601 38.7429 39.5359 36.4206 41.8897C35.2639 43.0636 33.8016 43.7508 32.2946 43.9951C31.1568 44.1776 29.9982 44.1058 28.9291 43.7966C27.867 43.4875 26.8954 42.9459 26.124 42.1799C25.2739 41.3401 24.6687 40.2301 24.4527 38.8717C24.2884 37.8454 24.3561 36.8241 24.5512 35.8158C24.7483 34.7875 25.0838 33.7612 25.4382 32.7608C25.5078 32.5644 25.5715 32.3659 25.6283 32.1654L38.4721 32.702ZM3.58178 39.7483C3.58178 40.0665 3.57681 40.3837 3.56884 40.7038C3.5569 41.1496 3.53799 41.5426 3.51907 41.9246C3.39664 44.6055 3.31004 46.5813 5.63234 48.935C6.78902 50.1089 8.25128 50.7971 9.75835 51.0405C10.8971 51.224 12.0548 51.1502 13.1238 50.842C14.186 50.5328 15.1575 49.9912 15.9299 49.2243C16.779 48.3855 17.3842 47.2754 17.6002 45.918C17.7645 44.8917 17.6968 43.8694 17.5017 42.8621C17.3046 41.8318 16.9691 40.8065 16.6148 39.8062C16.5451 39.6107 16.4824 39.4132 16.4256 39.2118L3.58178 39.7483Z" fill="#BD00FF" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_26_1352">
-                        <rect width="42.0066" height="51.008" fill="white" transform="translate(0.0231934 0.131226)" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  <label for="">2000</label>
-                </div>
-                <div class="ssib-item">
-                  <svg width="43" height="49" viewBox="0 0 43 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.0263 44.1508C25.579 44.1508 29.9453 42.3595 33.1646 39.1709C36.3838 35.9823 38.1924 31.6576 38.1924 27.1482C38.1924 22.6388 36.3838 18.3141 33.1646 15.1255C29.9453 11.9369 25.579 10.1455 21.0263 10.1455C16.4735 10.1455 12.1072 11.9369 8.88796 15.1255C5.66868 18.3141 3.86011 22.6388 3.86011 27.1482C3.86011 31.6576 5.66868 35.9823 8.88796 39.1709C12.1072 42.3595 16.4735 44.1508 21.0263 44.1508Z" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M28.0951 4.14417H13.9583" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M35.1632 10.1455L32.134 13.1458" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21.0264 18.1467V27.1481" stroke="#00FF38" stroke-width="4.68073" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <label for="">35:00</label>
-                </div>
-              </div>
-
-              <div class="ssib-cont right">
-                <div class="ssib-item">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_4_238)">
-                      <path d="M1.39999 13H4.19999" stroke="#0075FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M2.79999 13L2.79999 1" stroke="#0075FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M13.0667 1.25H3.26666V7.25H13.0667L11.6667 4.25L13.0667 1.25Z" fill="#0075FF" stroke="#0075FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4_238">
-                        <rect width="14" height="14" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  <label for="">3</label>
-                </div>
-                <div class="ssib-item">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_4_235)">
-                      <path d="M7 5.6875C7.30163 5.6875 7.60031 5.62809 7.87898 5.51266C8.15765 5.39723 8.41085 5.22805 8.62414 5.01476C8.83742 4.80148 9.00661 4.54827 9.12204 4.2696C9.23746 3.99093 9.29688 3.69225 9.29688 3.39062C9.29688 3.089 9.23746 2.79032 9.12204 2.51165C9.00661 2.23298 8.83742 1.97977 8.62414 1.76649C8.41085 1.5532 8.15765 1.38402 7.87898 1.26859C7.60031 1.15316 7.30163 1.09375 7 1.09375C6.39083 1.09375 5.80661 1.33574 5.37586 1.76649C4.94512 2.19724 4.70313 2.78146 4.70312 3.39062C4.70313 3.99979 4.94512 4.58401 5.37586 5.01476C5.80661 5.44551 6.39083 5.6875 7 5.6875Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M1.09375 12.5125V12.9062H12.9062V12.5125C12.9062 11.0425 12.9062 10.3075 12.6201 9.74575C12.3685 9.25185 11.9669 8.85029 11.473 8.59862C10.9112 8.3125 10.1763 8.3125 8.70625 8.3125H5.29375C3.82375 8.3125 3.08875 8.3125 2.527 8.59862C2.0331 8.85029 1.63154 9.25185 1.37988 9.74575C1.09375 10.3075 1.09375 11.0425 1.09375 12.5125Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4_235">
-                        <rect width="14" height="14" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  <label for="">256</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <%}%>
-      </div>
+      <iframe
+        style="width: 100%; height: 1200px"
+        src="<%= activePage %>"
+      ></iframe>
     </div>
-    <% } else if (activePage === "map") { %>
-    <div id="map"></div>
-    <% } else if (activePage === "profile") { %>
-    <div id="profile" style="width: 100%; height: 100%; position: absolute"></div>
-    <% } %>
-
     <script>
-      // Check for desktop users, if one is detected then the website denies access and puts up a message
-            if (!/Mobi/.test(navigator.userAgent)) {
-              document.body.innerHTML = "<div style='display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #303030; color: white; position: absolute; font-size: 40px'; text-align: center;><center>Website intended only for mobile devices :( </center><div>"
-            } else {
-              // Setting dark themed tile laa<yer for the map
-              L.tileLayer(
-                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-              ).addTo(map);
+      document.querySelector("#map").addEventListener("click", () => {
+        console.log("click");
+      });
 
-              // Marker icon boilerplate
-              function createCustomIcon(iconUrl, iconSize, iconAnchor, popupAnchor) {
-                return L.icon({
-                  iconUrl: iconUrl, // Path to icon
-                  iconSize: iconSize, // Size of icon [x, y]
-                  iconAnchor: iconAnchor, // Anchor of icon [x, y]
-                  popupAnchor: popupAnchor, // Anchor of popup [x, y]
-                });
-              }
-
-              var currentLocationIcon = createCustomIcon(
-                "icons/current.svg",
-                [32, 32],
-                [16, 16],
-                [0, -16]
-              ); // Icon for current location of the user
-
-              var checkpointLocationIcon = createCustomIcon(
-                "icons/checkpoint.svg",
-                [32, 32],
-                [16, 16],
-                [0, -16]
-              ); // Icon for a checkpoint
-
-              const userLocation = L.marker([0.0, 0.0], {
-                icon: currentLocationIcon,
-              }).addTo(map);
-
-              let uLon, uLan; // User's longtitude and langtitude
-
-
-              // Get the user's location using the Geolocation API
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  // Set the marker's position to the user's location
-                  userLocation.setLatLng([
-                    position.coords.latitude,
-                    position.coords.longitude,
-                  ]);
-
-                  // Set the map's view to the user's location
-                  map.setView(
-                    [position.coords.latitude, position.coords.longitude],
-                    13
-                  );
-                  //   uLan = position.coords.latitude;
-                  //   uLon = position.coords.longitude;
-                },
-                (error) => {
-                  console.error(error);
-                }
-              );
-
-              var control = L.Routing.control({
-                options: [
-                  {
-                    routeWhileDragging: true, // Alows dynamically redrawing of the route
-                  },
-                ],
-                waypoints: [
-                  // Waypoints of the route
-                  // L.latLng(userLocation.latitude, userLocation.longitude),
-                  L.latLng(52.23163710555889, 21.020493507385257),
-                  L.latLng(52.2163710555889, 21.040493507385257),
-                ],
-
-                lineOptions: {
-                  // Options for the line between the waypoints
-                  styles: [{ color: "purple", opacity: 0.7, weight: 8 }],
-                },
-
-                createMarker: function (i, waypoint, n) {
-                  // i is the i-th checkpoint, n is the number of waypoints
-                  // Adding checkpointLocationIcon marker to the waypoints
-                  return L.marker(waypoint.latLng, {
-                    icon: checkpointLocationIcon,
-                  }).addTo(map);
-                },
-              }).addTo(map);
-
-
-              document.querySelector("#map").addEventListener("click", () => {
-                console.log("click");
-              });
-
-              for (item of document.querySelectorAll(".bm-item")) {
-                item.addEventListener("onclick", () => {
-                  console.log("dob");
-                  item.classList.add("sel");
-                  for (otherItems of document.querySelectorAll(".bm-item")) {
-                    if (otherItems != item) {
-                      otherItems.classList.remove("sel");
-                    }
-                  }
-                });
-              }
-              setInterval(() => {
-                navigator.geolocation.getCurrentPosition(
-                  async (position) => {
-                    // Set the marker's position to the user's location
-                    // userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
-
-                    // Set the map's view to the user's location
-                    console.log(position.coords.latitude, position.coords.longitude);
-                    fetch("/locationEvent", {
-                      method: "POST",
-                      body: JSON.stringify({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                      }),
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    })
-                      .then((response) => {
-                        console.log("Location event sent successfully.");
-                      })
-                      .catch((error) => {
-                        console.error("Error sending location event:", error);
-                      });
-                  },
-                  (error) => {
-                    console.error(error);
-                  }
-                );
-              }, 1000);
-
+      for (item of document.querySelectorAll(".bm-item")) {
+        item.addEventListener("onclick", () => {
+          console.log("dob");
+          item.classList.add("sel");
+          for (otherItems of document.querySelectorAll(".bm-item")) {
+            if (otherItems != item) {
+              otherItems.classList.remove("sel");
             }
+          }
+        });
+      }
+      setInterval(() => {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            // Set the marker's position to the user's location
+            // userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
+
+            // Set the map's view to the user's location
+            console.log(position.coords.latitude, position.coords.longitude);
+            fetch("/locationEvent", {
+              method: "POST",
+              body: JSON.stringify({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((response) => {
+                console.log("Location event sent successfully.");
+              })
+              .catch((error) => {
+                console.error("Error sending location event:", error);
+              });
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      }, 1000);
+      let btns = document.getElementsByClassName("bm-item");
+      for (let i of btns) {
+        i.addEventListener("click", () => {
+          window.location.href = "";
+        });
+      }
     </script>
-    </div>
   </body>
 </html>
