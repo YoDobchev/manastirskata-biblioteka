@@ -2,42 +2,77 @@
 <html>
   <head>
     <title>Login Page</title>
-    <link rel="stylesheet" href="/styles/login.css" type="text/css">
-    <link rel="stylesheet" href="/styles/index.css" type="text/css">
+    <link rel="stylesheet" href="/styles/login.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
   </head>
   <body>
-
     <div id="container">
-
       <div class="login-container">
         <h1>Log in</h1>
-        <label for="">We are happy to see you back. Enter your credentials to use the app.</label>
+        <label for=""
+          >We are happy to see you back. Enter your credentials to use the
+          app.</label
+        >
 
         <form>
-          <input type="text" id="username" name="username" placeholder="Username" />
-          <input type="password" id="password" name="password" placeholder="Password" />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            minlength="6"
+            required
+          />
           <button type="submit" id="loginButton">Log In</button>
-          <label for="" id="noacc" class="secondary">Don't have an account?</label>
+          <label for="" id="noacc" class="secondary"
+            >Don't have an account?</label
+          >
         </form>
-
       </div>
 
       <div class="register-container">
         <h1>Register</h1>
-        <label for="">Create an account and enter a new interesting world</label>
+        <label for=""
+          >Create an account and enter a new interesting world</label
+        >
 
         <form>
-          <input type="text" id="username" name="username" placeholder="Username" />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+          />
           <input type="text" id="email" name="email" placeholder="Email" />
-          <input type="password" id="password" name="password" placeholder="Password" />
-          <input type="password" id="reppassword" name="reppassword" placeholder="Repeat password" />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            minlength="6"
+            required
+          />
+          <input
+            type="password"
+            id="reppassword"
+            name="reppassword"
+            placeholder="Repeat password"
+            minlength="6"
+            required
+          />
           <button type="submit" id="signupButton">Register</button>
-          <label for="" id="haveacc" class="secondary">Already have an account?</label>
+          <label for="" id="haveacc" class="secondary"
+            >Already have an account?</label
+          >
         </form>
       </div>
-
     </div>
-
 
     <!-- <h1>Login Page</h1>
     <form>
@@ -98,13 +133,13 @@
     </script>
 
     <script>
-      document.querySelector('#noacc').addEventListener('click', () => {
+      document.querySelector("#noacc").addEventListener("click", () => {
         // console.log(document.querySelector('$container'))
-        document.querySelector('#container').classList.add('reg');
+        document.querySelector("#container").classList.add("reg");
       });
-      document.querySelector('#haveacc').addEventListener('click', () => {
+      document.querySelector("#haveacc").addEventListener("click", () => {
         // console.log(document.querySelector('$container'))
-        document.querySelector('#container').classList.remove('reg');
+        document.querySelector("#container").classList.remove("reg");
       });
     </script>
   </body>

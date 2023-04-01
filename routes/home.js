@@ -11,7 +11,7 @@ router.use(urlencodedParser, (req, res, next) => {
       return res.sendStatus(500);
     }
     const userLocation = docs.location;
-    console.log(userLocation);
+    console.log(JSON.stringify(docs));
     const threshold = 5;
     //about 5-6 kilometers
 
@@ -23,16 +23,14 @@ router.use(urlencodedParser, (req, res, next) => {
 
       const filteredDocs = docs.filter((doc) => {
         const latDiff = Math.abs(
-          doc.Startlocation.coordinates[0] - userLocation.latitude
+          doc.locations[0].Latitude - userLocation.latitude
         );
         const lonDiff = Math.abs(
-          doc.Startlocation.coordinates[1] - userLocation.longitude
+          doc.locations[0].longitude - userLocation.longitude
         );
-        console.log(latDiff, lonDiff + "diff");
         return latDiff <= threshold && lonDiff <= threshold;
       });
       req.nearbyAdvs = filteredDocs;
-      console.log(filteredDocs + "eee");
       next();
     });
   });
