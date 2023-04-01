@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
           .update(req.body.password)
           .digest("hex"),
         location: { latitude: 0, longitude: 0 },
+        currentAdventure: null,
       });
     } else {
       res.redirect("/login");
