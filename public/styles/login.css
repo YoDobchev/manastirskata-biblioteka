@@ -1,0 +1,119 @@
+/* @font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Black.woff2);
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Bold.woff2);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: GT;
+    src: url(/fonts/GTWalsheimPro-Medium.woff2);
+    font-weight: 500;
+}
+
+* {
+    box-sizing: border-box;
+    color: white;
+    background-color: black;
+    font-family: GT;
+
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
+
+button {
+    border: none;
+} */
+
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200vw;
+    height: 100vh;
+
+    background-color: black;
+
+    transition: margin-left .2s;
+}
+#container.reg {
+    margin-left: -100vw;
+}
+
+h1 {
+    font-size: calc(100vw / 10);
+    margin: 0px;
+    padding: 0px;
+    font-weight: 800;
+    margin-bottom: calc(100vh / 44);
+}
+label {
+    font-size: calc(100vw / 23);
+    font-weight: 500;
+    color: #404040;
+}
+
+
+.login-container, .register-container {
+
+    width: 100%;
+    height: fit-content;
+
+
+    padding: calc((100vh / 44)*2);
+}
+
+
+form {
+    width: 100%;
+    height: fit-content;
+
+    margin-top: calc(100vh / 17.75);
+    /* margin-bottom: calc(100vh / 17.75); */
+}
+input {
+    width: 100%;
+    height: calc(100vh / 12);
+
+    background-color: #202020;
+    padding: 0px calc(100vw / 16);
+    margin-bottom: calc(100vh / 44);
+
+    font-size: calc(100vw / 23);
+    border-radius: calc(100vw / 80);
+}
+form input:last-of-type {
+    margin-bottom: 0px;
+}
+
+button {
+    width: 100%;
+    height: calc(100vh / 12);
+
+    font-size: calc(100vw / 22);
+
+    background-color: #BD00FF;
+    border-radius: calc(100vw / 80);
+
+    margin-top: calc(100vh / 17.75);
+}
+
+form label {
+    display: block;
+    padding-top: calc(100vh / 44);
+
+    text-align: center;
+    text-decoration: underline;
+}

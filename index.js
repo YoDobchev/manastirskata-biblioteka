@@ -18,7 +18,7 @@ app.use(
     resave: false,
   })
 );
-
+app.use(express.static(__dirname + '/public'));
 const isLoggedIn = (req, res, next) => {
   if (req.session.ID) {
     next();
