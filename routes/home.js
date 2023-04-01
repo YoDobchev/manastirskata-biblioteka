@@ -32,6 +32,7 @@ router.use(urlencodedParser, (req, res, next) => {
         return latDiff <= threshold && lonDiff <= threshold;
       });
       req.nearbyAdvs = filteredDocs;
+      req.user = docs;
       console.log(filteredDocs + "eee");
       next();
     });
@@ -49,7 +50,16 @@ router.get("/mapPage", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "map" });
 });
 router.get("/map", (req, res) => {
-  res.render("map.ejs");
+  let routeTo = { latitude: 0, longitude: 0 };
+  if (req.query.id) {
+    db.adventures.findOne({ _id: req.query.id }, (err, doc) => {
+      if (doc.latitude != 0) {
+        routeTo.latitude = doc.locations[0].latitude;
+        routeTo.longitude = doc.locations[0].longitude;
+        res.render("map.ejs", { nextLocation: routeTo });
+      }
+    });
+  }
 });
 router.get("/shopPage", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "shop" });
