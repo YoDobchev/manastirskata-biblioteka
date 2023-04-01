@@ -14,7 +14,7 @@
   <h1>Adventures near you</h1>
   <div class="ssc-container">
     <%for(let i=0;i<advs.length;i++){%>
-      <div class="ss-block">
+      <div class="ss-block" data-id="<%= advs[i]._id %>">
         <div class="ss-item">
           <div class="ssi-top">
             <label for=""><%-advs[i].name%></label>
@@ -152,26 +152,23 @@
                 </svg>
                 <label for="">3</label>
               </div>
-              <div class="ssib-item">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_4_235)">
-                  <path d="M7 5.6875C7.30163 5.6875 7.60031 5.62809 7.87898 5.51266C8.15765 5.39723 8.41085 5.22805 8.62414 5.01476C8.83742 4.80148 9.00661 4.54827 9.12204 4.2696C9.23746 3.99093 9.29688 3.69225 9.29688 3.39062C9.29688 3.089 9.23746 2.79032 9.12204 2.51165C9.00661 2.23298 8.83742 1.97977 8.62414 1.76649C8.41085 1.5532 8.15765 1.38402 7.87898 1.26859C7.60031 1.15316 7.30163 1.09375 7 1.09375C6.39083 1.09375 5.80661 1.33574 5.37586 1.76649C4.94512 2.19724 4.70313 2.78146 4.70312 3.39062C4.70313 3.99979 4.94512 4.58401 5.37586 5.01476C5.80661 5.44551 6.39083 5.6875 7 5.6875Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1.09375 12.5125V12.9062H12.9062V12.5125C12.9062 11.0425 12.9062 10.3075 12.6201 9.74575C12.3685 9.25185 11.9669 8.85029 11.473 8.59862C10.9112 8.3125 10.1763 8.3125 8.70625 8.3125H5.29375C3.82375 8.3125 3.08875 8.3125 2.527 8.59862C2.0331 8.85029 1.63154 9.25185 1.37988 9.74575C1.09375 10.3075 1.09375 11.0425 1.09375 12.5125Z" fill="#FEBF4C" stroke="#FEBF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_4_235">
-                  <rect width="14" height="14" fill="white"/>
-                  </clipPath>
-                  </defs>
-                  </svg>
+              
                 <label for="">256</label>
-              </div>
               </div>
             </div>
           </div>
         </div>
         <%}%>
       </div>
+      <script>
+        for(let i of document.querySelectorAll(".ss-block")){
+            i.addEventListener("click",async ()=>{
+                await fetch("/joinAdventure?ID="+i.dataset.id)
+                window.location.href=`/map?id=${i.dataset.id}`
+            })
+            
+        }
+      </script>
     </body>
     
   </div>

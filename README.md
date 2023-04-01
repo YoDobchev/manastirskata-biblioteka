@@ -1,6 +1,1 @@
-# manastirskata-biblioteka]
-
-
-/mapPage
-/home
-/login
+# manastirskata-biblioteka
