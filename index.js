@@ -4,6 +4,7 @@ const app = express();
 const session = require("express-session");
 const port = 3000;
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + '/public'));
 const db = require("./db.js");
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(
