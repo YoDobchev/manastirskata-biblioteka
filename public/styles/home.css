@@ -77,9 +77,6 @@ html{
     width: 20%;
     height: 20%;
 }
-.leaflet-routing-alt{
-  display: none;
-}
 
 #top-menu #credits {
     display: flex;
@@ -108,9 +105,7 @@ h1 {
     margin-bottom: calc(100vh / 21);
     margin-left: calc(100vh / 23);
 }
-.leaflet-control-zoom{
-  display:none;
-}
+
 body {
     margin: 0;
     padding: 0;
