@@ -173,6 +173,27 @@
         </div>
         <%}%>
       </div>
+      <script>
+              items=document.getElementsByClassName("ss-item")
+              for(let i of items){
+                i.addEventListener("click",async()=>{
+                  const adventureId = i.dataset.id;
+                    fetch(`/joinAdventure?id=${adventureId}`, {
+                      method: 'GET',
+                      credentials: 'same-origin' 
+                    })
+                    .then(response => {
+                      window.location.href="/maps"
+                        // handle success
+                      
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                })
+              }
+
+      </script>
     </body>
     
   </div>

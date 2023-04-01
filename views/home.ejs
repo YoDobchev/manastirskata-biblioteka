@@ -244,7 +244,7 @@
       }, 1000);
       let btns = document.getElementsByClassName("bm-item");
       console.log(btns);
-      activeP=<%- activePage %>
+      activeP = "<%- activePage %>";
       routes = ["/home", "/mapPage", "/shopPage", "/profilePage"];
       for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", () => {

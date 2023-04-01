@@ -23,7 +23,7 @@ router.use(urlencodedParser, (req, res, next) => {
 
       const filteredDocs = docs.filter((doc) => {
         const latDiff = Math.abs(
-          doc.locations[0].Latitude - userLocation.latitude
+          doc.locations[0].latitude - userLocation.latitude
         );
         const lonDiff = Math.abs(
           doc.locations[0].longitude - userLocation.longitude
