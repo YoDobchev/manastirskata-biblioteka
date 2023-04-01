@@ -14,8 +14,9 @@
   <h1>Adventures near you</h1>
   <div class="ssc-container">
     <%for(let i=0;i<advs.length;i++){%>
+
       <div class="ss-block">
-        <div class="ss-item">
+        <div data-id=<%- advs[i]._id %> class="ss-item">
           <div class="ssi-top">
             <label for=""><%-advs[i].name%></label>
             <div class="ssit-right">
