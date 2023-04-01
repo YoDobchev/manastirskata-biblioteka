@@ -4,7 +4,6 @@ let bodyParser = require("body-parser");
 const db = require("../db.js");
 let crypto = require("crypto");
 router.get("/", (req, res) => {
-  console.log("kek");
   res.render("login.ejs");
 });
 

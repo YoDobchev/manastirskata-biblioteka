@@ -15,10 +15,6 @@ db.adventures = new Datastore({
 });
 db.adventures.insert({
   name: `Monasite test nomer ${Math.floor(Math.random() * 20)}`,
-  Startlocation: {
-    type: "Point",
-    coordinates: [42.0230861, 23.0854894],
-  },
   locations: [
     { latitude: 42.0343, longitude: 23.11483 },
     { latitude: 42.0267, longitude: 23.0971 },

@@ -14,8 +14,9 @@
   <h1>Adventures near you</h1>
   <div class="ssc-container">
     <%for(let i=0;i<advs.length;i++){%>
+
       <div class="ss-block">
-        <div class="ss-item">
+        <div data-id=<%- advs[i]._id %> class="ss-item">
           <div class="ssi-top">
             <label for=""><%-advs[i].name%></label>
             <div class="ssit-right">
@@ -172,6 +173,27 @@
         </div>
         <%}%>
       </div>
+      <script>
+              items=document.getElementsByClassName("ss-item")
+              for(let i of items){
+                i.addEventListener("click",async()=>{
+                  const adventureId = i.dataset.id;
+                    fetch(`/joinAdventure?id=${adventureId}`, {
+                      method: 'GET',
+                      credentials: 'same-origin' 
+                    })
+                    .then(response => {
+                      window.location.href="/maps"
+                        // handle success
+                      
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                })
+              }
+
+      </script>
     </body>
     
   </div>

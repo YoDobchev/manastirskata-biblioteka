@@ -29,11 +29,10 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 app.get("/", isLoggedIn, (req, res) => {
-  console.log(req.query.hello);
   res.redirect("/home");
 });
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Nebuluous listening on ${port}`);
 });
 app.post("/locationEvent", isLoggedIn, (req, res) => {
   let oldLocation;

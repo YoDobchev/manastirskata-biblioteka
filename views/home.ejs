@@ -232,7 +232,7 @@
             })
               .then((response) => {
                 console.log("Location event sent successfully.");
-              })
+              })pload
               .catch((error) => {
                 console.error("Error sending location event:", error);
               });
@@ -244,10 +244,11 @@
       }, 1000);
       let btns = document.getElementsByClassName("bm-item");
       console.log(btns);
+      activeP = "<%- activePage %>";
       routes = ["/home", "/mapPage", "/shopPage", "/profilePage"];
       for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", () => {
-          console.log("elo");
+
           window.location.href = routes[i];
         });
       }
