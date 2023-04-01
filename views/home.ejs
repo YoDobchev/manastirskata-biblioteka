@@ -1,94 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Mobile Page</title>
+  <head>
+    <title>Mobile P\age</title>
+    <link rel="stylesheet" type="text/css" href="/styles/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    #container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-
-    #image {
-      width: 60%;
-      max-width: 400px;
-      margin-bottom: 20px;
-    }
-
-    #progress {
-      width: 100%;
-      height: 10px;
-      background-color: #e0e0e0;
-      margin-bottom: 20px;
-    }
-
-    #progress-filled {
-      height: 100%;
-      background-color: #4caf50;
-    }
-
-    #buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .button {
-      width: 50px;
-      height: 50px;
-      margin: 0 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .button:nth-child(1) {
-      background-color: #f44336;
-    }
-
-    .button:nth-child(2) {
-      background-color: #e91e63;
-    }
-
-    .button:nth-child(3) {
-      background-color: #2196f3;
-    }
-
-    .button:nth-child(4) {
-      background-color: #4caf50;
-    }
-  </style>
-</head>
-
-
-<body>
-  <ul>
-    <li class="<%= activePage === 'home' ? 'active' : '' %>"><a href="/home">home</a></li>
-    <li class="<%= activePage === 'about' ? 'active' : '' %>"><a href="/map">map</a></li>
-    <li class="<%= activePage === 'contact' ? 'active' : '' %>"><a href="/shop">shop</a></li>
-    <li class="<%= activePage === 'contact' ? 'active' : '' %>"><a href="/profile">profile</a></li>
-  </ul>
-  <% if (activePage === 'home') { %>
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+  </head>
 
   <body>
     <div id="container">
-      <div id="map" style="width: 100%; height: 600px;"></div>
+      <div id="map" style="width: 100%; height: 600px"></div>
+
       <div id="progress">
         <div id="progress-filled"></div>
       </div>
@@ -106,125 +39,57 @@
       }).setView([51.505, -0.09], 13);
 
 
-      var PurpleIcon = L.Icon.extend({
-        options: {
-          iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
-          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-          iconSize: [25, 41],
-          shadowSize: [41, 41],
-          iconAnchor: [12, 41],
-          shadowAnchor: [12, 41],
-          popupAnchor: [0, -35]
+
+    <script>
+      var map = L.map("map").setView([51.505, -0.09], 13);
+
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }
-      });
+      ).addTo(map);
 
-      var currentIcon = L.Icon.extend({
-        options: {
-          iconUrl: 'current.svg',
+      L.marker([51.5, -0.09]).addTo(map).bindPopup("sex").openPopup();
 
-          iconSize: [38, 95], // size of the icon
-          //shadowSize:   [50, 64], // size of the shadow
-          iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-          //shadowAnchor: [4, 62],  // the same for the shadow
-          popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-        }
-      });
-
-      // create a marker object with a custom purple icon
-      var marker = L.marker([51.5, -0.09], {
-        icon: new PurpleIcon()
-      }).addTo(map);
-
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      let checkpoint = "checkpoint"
-
-
-      const userLocation = L.marker([0.0, 0.0], {
-        icon: new PurpleIcon()
-      }).addTo(map);
-
-      // Get the user's location using the Geolocation API
-      setInterval(()=>{
-  navigator.geolocation.getCurrentPosition(position => {
-    // Set the marker's position to the user's location
-    userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
-
-    // Set the map's view to the user's location
-    map.setView([position.coords.latitude, position.coords.longitude], 13);
-
-    // Send locationEvent POST request
-    fetch('/locationEvent', {
-      method: 'POST',
-      body: JSON.stringify({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      console.log('Location event sent successfully.');
-    })
-    .catch(error => {
-      console.error('Error sending location event:', error);
-    });
-  }, error => {
-    console.error(error);
-  });
-}, 1000);
-
-
-      var marker = L.marker([51.5, -0.09], {
-        icon: new PurpleIcon()
-      }).addTo(map);
-
-
-      // NAVIGATION
-
-      // define the start and end points
       var start = L.latLng(51.5, -0.09);
       var end = L.latLng(51.51, -0.1);
+      const userLocation = L.marker([0.0, 0.0], { icon: currentIcon }).addTo(
+        map
+      );
 
-      // create a routing control object and add it to the map
-      L.Routing.control({
-        waypoints: [
-          start,
-          end
-        ],
-        routeWhileDragging: true,
-        router: L.Routing.mapbox(process.env.ORS_API_KEY),
-        // add a custom line style for the route
-        lineOptions: {
-          styles: [{
-            color: '#4e87c0',
-            opacity: 0.7,
-            weight: 5
-          }]
+      // Get the user's location using the Geolocation API
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Set the marker's position to the user's location
+          userLocation.setLatLng([
+            position.coords.latitude,
+            position.coords.longitude,
+          ]);
+
+          // Set the map's view to the user's location
+          map.setView(
+            [position.coords.latitude, position.coords.longitude],
+            13
+          );
+        },
+        (error) => {
+          console.error(error);
         }
+      );
+
+      var ors = L.Routing.control({
+        router: new L.Routing.openrouteservice({
+          api_key: process.env.ORS_API_KEY,
+        }),
+        waypoints: [L.latLng(51.5, -0.1), L.latLng(51.52, -0.12)],
+        routeWhileDragging: true,
       }).addTo(map);
     </script>
-    <% } else if (activePage === 'map') { %>
-    <p>map page</p>
-    <% } else if (activePage === 'shop') { %>
-    <p>shop</p>
-    <% } else if (activePage === 'profile') { %>
-    <p>profile</p>
-    <% } %>
-    <script>
-      var map = L.map('map').setView([51.505, -0.09], 13);
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
-    </script>
+    <!-- <script src="/scripts/home.js" type="text/js"></script> -->
+ 
   </body>
 
 </html>
