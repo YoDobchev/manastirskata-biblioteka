@@ -10,7 +10,7 @@
       crossorigin=""
     />
 
-    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/styles/index.css" type="text/css" /> -->
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
 
     <script
@@ -73,7 +73,7 @@
     </div>
 
     <div class="ss-block">
-      <h1>Adventures near you</h1>
+      <h1 id="adventures">Adventures near you</h1>
     </div>
     <div id="map">
       <script>
@@ -87,13 +87,15 @@
           }
         ).addTo(map);
         var currentLocationIcon = L.icon({
-          iconUrl: "assets/icons/current.svg",
+        
+          iconUrl: "icons/current.svg",
           iconSize: [32, 32],
           iconAnchor: [16, 16],
-          popupAnchor: [0, -16],
+          popupAnchor: [0, -16]
+              
         });
     
-        //L.marker([51.5, -0.09], {icon: currentLocationIcon}).addTo(map);
+        L.marker([51.5, -0.09], {icon: currentLocationIcon}).addTo(map);
     
         const userLocation = L.marker([0.0, 0.0], {
           icon: currentLocationIcon,
