@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Mobile P\age</title>
     <link rel="stylesheet" type="text/css" href="/styles/home.css" />
@@ -20,6 +21,7 @@
   <body>
     <div id="container">
       <div id="map" style="width: 100%; height: 600px"></div>
+
       <div id="progress">
         <div id="progress-filled"></div>
       </div>
@@ -30,6 +32,13 @@
         <div class="button"></div>
       </div>
     </div>
+    <script>
+      var map = L.map('map', {
+        zoomControls: false,
+        attributionControl: false
+      }).setView([51.505, -0.09], 13);
+
+
 
     <script>
       var map = L.map("map").setView([51.505, -0.09], 13);
@@ -80,5 +89,7 @@
     </script>
 
     <!-- <script src="/scripts/home.js" type="text/js"></script> -->
+ 
   </body>
+
 </html>
