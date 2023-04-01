@@ -5,7 +5,7 @@ const session = require("express-session");
 const port = 3000;
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json({ limit: "1mb" });
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 app.use(jsonParser);
 app.set("view engine", "ejs");
 const db = require("./db.js");
@@ -18,7 +18,7 @@ app.use(
     resave: false,
   })
 );
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 const isLoggedIn = (req, res, next) => {
   if (req.session.ID) {
     next();
@@ -41,12 +41,43 @@ db.adventures.insert({
     type: "Point",
     coordinates: [42.0230861, 23.0854894],
   },
+  locations: [
+    { latitude: 42.0230861, longitude: 23.0854894 },
+    { latitude: 42.0227891, longitude: 23.0876455 },
+    { latitude: 42.0234561, longitude: 23.0883456 },
+    // add more locations as necessary
+  ],
 });
 //for debugging
 //
 
 app.post("/locationEvent", isLoggedIn, (req, res) => {
-  console.log(req.body);
+  let oldLocation;
+  db.users.findOne({ username: req.session.user }, (err, docs) => {
+    if (docs.currentAdventure != null) {
+      oldLocation = docs.location;
+      let newLocation = req.body;
+      let nextGoal;
+      db.adventures.findOne({ ID: docs.currentAdventure.ID }, (err, docsad) => {
+        nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
+        oldDist = Math.hypot(
+          oldLocation.latitude - nextGoal.latitude,
+          oldLocation.longitude - nextGoal.longitude
+        );
+        newDist = Math.hypot(
+          newLocation.latitude - nextGoal.latitude,
+          newLocation.longitude - nextGoal.longitude
+        );
+        if (newDist < oldDist) {
+          db.users.updateOne(
+            { username: req.session.user },
+            { $inc: { tokens: newDist - oldDist } }
+          );
+        }
+      });
+    }
+  });
+
   db.users.update(
     { username: req.session.user },
     { $set: { location: req.body } },
