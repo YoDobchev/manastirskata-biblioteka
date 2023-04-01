@@ -1,5 +1,3 @@
 node_modules/
-users.db
-adventures.db
-myDb.db
+.db
 .env
