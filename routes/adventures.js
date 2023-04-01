@@ -5,26 +5,6 @@ const db = require("../db.js");
 var jsonParser = bodyParser.json();
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-router.get("/joinAdventure", (req, res) => {
-  db.users.update(
-    { username: req.session.user },
-    {
-      currentAdventure: {
-        ID: req.query.adventureID,
-        progressIndex: 0,
-        tokens: 0,
-      },
-    },
-    (err) => {
-      if (err) {
-        res.send(404);
-      } else {
-        res.send(200);
-      }
-    }
-  );
-});
-
 router.get("/getNearbyAdventures", urlencodedParser, (req, res) => {
   db.users.findOne({ username: req.session.user }, (err, docs) => {
     userLocation = docs.location;
