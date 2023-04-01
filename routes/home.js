@@ -39,19 +39,29 @@ router.use(urlencodedParser, (req, res, next) => {
 });
 
 router.get("/home", (req, res) => {
-  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "home" });
+  res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "nearyou" });
 });
 
-router.get("/map", (req, res) => {
+router.get("/nearyou", (req, res) => {
+  res.render("nearyou.ejs", { advs: req.nearbyAdvs });
+});
+router.get("/mapPage", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "map" });
 });
-
-router.get("/shop", (req, res) => {
+router.get("/map", (req, res) => {
+  res.render("map.ejs");
+});
+router.get("/shopPage", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "shop" });
 });
-
-router.get("/profile", (req, res) => {
+router.get("/shop", (req, res) => {
+  res.render("shop.ejs");
+});
+router.get("/profilePage", (req, res) => {
   res.render("home.ejs", { advs: req.nearbyAdvs, activePage: "profile" });
+});
+router.get("/profile", (req, res) => {
+  res.render("profile.ejs");
 });
 
 module.exports = router;
