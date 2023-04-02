@@ -3,7 +3,9 @@
     src: url(/fonts/GTWalsheimPro-Black.woff2);
     font-weight: 800;
 }
-
+iframe {
+    border:none;
+}
 @font-face {
     font-family: GT;
     src: url(/fonts/GTWalsheimPro-Bold.woff2);

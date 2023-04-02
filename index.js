@@ -52,15 +52,34 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
           { _id: docs.currentAdventure.id },
           (err, docsad) => {
             if (!err && docsad != null) {
-              if (distanceBetweenPoints(req.body.latitude, req.body.longitude, docsad.locations[progressIndex].latitude, docsad.locations[progressIndex].longitude) < 20) {
+              console.log(
+                distanceBetweenPoints(
+                  req.body.latitude,
+                  req.body.longitude,
+                  docsad.locations[progressIndex].latitude,
+                  docsad.locations[progressIndex].longitude
+                )
+              );
+              if (
+                distanceBetweenPoints(
+                  req.body.latitude,
+                  req.body.longitude,
+                  docsad.locations[progressIndex].latitude,
+                  docsad.locations[progressIndex].longitude
+                ) < 200
+              ) {
                 db.users.update(
                   { username: req.session.user },
-                  { $inc: { progressIndex: 1 } }
+                  { $inc: { progressIndex: 1 } },
+                  { new: true },
+                  (err, doc) => {
+                    console.log(doc);
+                  }
                 );
                 progressIndex++;
               }
               console.log(docsad);
-              console.log("progrIndex " + progressIndex)
+              console.log("progrIndex " + progressIndex);
               nextGoal = docsad.locations[progressIndex];
               oldDist = Math.hypot(
                 oldLocation.latitude - nextGoal.latitude,
@@ -70,13 +89,21 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
                 newLocation.latitude - nextGoal.latitude,
                 newLocation.longitude - nextGoal.longitude
               );
-              console.log(newDist, oldDist);
-              if (newDist < oldDist) {
-                db.users.update(
-                  { username: req.session.user },
-                  { $inc: { tokens: (newDist - oldDist) * 13 } }
-                );
-              }
+              // console.log(newDist, oldDist);
+              // if (newDist < oldDist) {
+              //   db.users.update(
+              //     { username: req.session.user },
+              //     { $inc: { tokens: (newDist - oldDist) * 13 } },
+              //     { new: true },
+              //     (err, doc) => {
+              //       console.log(doc);
+              //       console.log(
+              //         "if this is correct this should print" +
+              //           doc.currentAdventure.progressIndex
+              //       );
+              //     }
+              //   );
+              // }
               db.users.findOne({ username: req.session.user }, (err, docs) => {
                 res.json({ tokens: docs.tokens, nextGoal: nextGoal });
               });
@@ -97,16 +124,19 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
 
 function distanceBetweenPoints(lat1, lon1, lat2, lon2) {
   var R = 6371e3; // Earth's radius in meters
-  var phi1 = lat1 * Math.PI / 180;
-  var phi2 = lat2 * Math.PI / 180;
-  var deltaPhi = (lat2 - lat1) * Math.PI / 180;
-  var deltaLambda = (lon2 - lon1) * Math.PI / 180;
+  var phi1 = (lat1 * Math.PI) / 180;
+  var phi2 = (lat2 * Math.PI) / 180;
+  var deltaPhi = ((lat2 - lat1) * Math.PI) / 180;
+  var deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
 
-  var a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) +
-    Math.cos(phi1) * Math.cos(phi2) *
-    Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
+  var a =
+    Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
+    Math.cos(phi1) *
+      Math.cos(phi2) *
+      Math.sin(deltaLambda / 2) *
+      Math.sin(deltaLambda / 2);
 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   var distance = R * c; // Distance in meters
 
