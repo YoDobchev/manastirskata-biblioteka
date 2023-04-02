@@ -16,12 +16,12 @@ db.adventures.findOne({}, (err, docs) => {
     db.adventures.insert({
       name: `Monasite test nomer ${Math.floor(Math.random() * 20)}`,
       locations: [
-        { latitude: 42.0343, longitude: 23.11483 },
-        { latitude: 42.0267, longitude: 23.0971 },
-        { latitude: 42.0227, longitude: 23.0903 },
-        { latitude: 42.0312, longitude: 23.0808 },
+        { latitude: 42.0343, longitude: 23.11483, clue: "кур"},
+        { latitude: 42.0267, longitude: 23.0971, clue: "кур2"},
+        { latitude: 42.0227, longitude: 23.0903, clue: "кур3"},
+        { latitude: 42.0312, longitude: 23.0808, clue: "kur4" },
       ],
-    });
+    },);
   }
 });
 

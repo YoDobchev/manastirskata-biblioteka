@@ -79,4 +79,12 @@ router.get("/profile", (req, res) => {
   res.render("profile.ejs", { user: req.user });
 });
 
+router.get("/clue", (req, res) => {
+  let clue = ''
+  db.adventures.findOne({ _id: req.user.currentAdventure.id}, (err, adv) => {
+    clue = adv.locations[req.user.progressIndex].clue;
+  }); 
+  res.render("clue.ejs", { clue: clue})
+});
+
 module.exports = router;
