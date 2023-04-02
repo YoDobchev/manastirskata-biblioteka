@@ -70,14 +70,18 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
               ) {
                 db.users.update(
                   { username: req.session.user },
-                  { $inc: { progressIndex: 1 } },
+                  { $inc: { currentAdventure: { progressIndex: 1 } } },
                   { new: true },
                   (err, doc) => {
                     console.log(doc);
                   }
                 );
                 progressIndex++;
+                nextGoal = docsad.locations[progressIndex];
               }
+              db.users.findOne({ username: req.session.user }, (err, docs) => {
+                res.json({ tokens: docs.tokens, nextGoal: nextGoal });
+              });
               console.log(docsad);
               console.log("progrIndex " + progressIndex);
               nextGoal = docsad.locations[progressIndex];
@@ -104,9 +108,6 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
               //     }
               //   );
               // }
-              db.users.findOne({ username: req.session.user }, (err, docs) => {
-                res.json({ tokens: docs.tokens, nextGoal: nextGoal });
-              });
             }
           }
         );
