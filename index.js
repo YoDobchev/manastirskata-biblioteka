@@ -46,23 +46,26 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
         let newLocation = req.body;
         let nextGoal;
         db.adventures.findOne(
-          { ID: docs.currentAdventure.ID },
+          { _id: docs.currentAdventure.id },
           (err, docsad) => {
-            nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
-            oldDist = Math.hypot(
-              oldLocation.latitude - nextGoal.latitude,
-              oldLocation.longitude - nextGoal.longitude
-            );
-            newDist = Math.hypot(
-              newLocation.latitude - nextGoal.latitude,
-              newLocation.longitude - nextGoal.longitude
-            );
-            console.log(newDist, oldDist);
-            if (newDist < oldDist) {
-              db.users.updateOne(
-                { username: req.session.user },
-                { $inc: { tokens: newDist - oldDist } }
+            if (!err && docsad != null) {
+              console.log(docsad);
+              nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
+              oldDist = Math.hypot(
+                oldLocation.latitude - nextGoal.latitude,
+                oldLocation.longitude - nextGoal.longitude
               );
+              newDist = Math.hypot(
+                newLocation.latitude - nextGoal.latitude,
+                newLocation.longitude - nextGoal.longitude
+              );
+              console.log(newDist, oldDist);
+              if (newDist < oldDist) {
+                db.users.updateOne(
+                  { username: req.session.user },
+                  { $inc: { tokens: newDist - oldDist } }
+                );
+              }
             }
           }
         );
