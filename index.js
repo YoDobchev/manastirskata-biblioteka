@@ -66,7 +66,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
                   req.body.longitude,
                   docsad.locations[progressIndex].latitude,
                   docsad.locations[progressIndex].longitude
-                ) < 200
+                ) < 10 && docsad.locations.length != progressIndex + 1
               ) {
                 progressIndex++;
                 db.users.update(
