@@ -1,0 +1,33 @@
+[
+{
+    "I am an odd number. If you subtract 5 from me, you get 2. What number am I?": "7",
+    "I am a prime number that is also the sum of the first 3 prime numbers. What number am I?": "10",
+    "I am a number that is the product of 3 and 7, and when you add them together, you get 25. What number am I?": "21",
+    "I am an odd number, take away a letter and I become even. What number am I?": "7",
+    "I am a number that is the difference between 16 and 8. What number am I?": "8",
+    "I am a number that is the sum of the first 5 odd numbers. What number am I?": "25",
+    "I am a number that is the cube of 3. What number am I?": "27",
+    "I am a number that is the square root of 64. What number am I?": "8",
+    "I am a number that is the sum of the first 4 Fibonacci numbers. What number am I?": "7",
+    "I am a number that is the result of doubling the square of 2. What number am I?": "8"
+},
+{
+    "I'm a street where you'll find a palace, a museum and a fountain that's famous. What am I?": "Tsar Osvoboditel Boulevard",
+    "I'm a street named after a great Bulgarian poet, where you can find the National Palace of Culture. What am I?": "Vitosha Boulevard",
+    "I'm a street that leads to a large park and a university, and is named after a famous Bulgarian composer. What am I?": "Panayot Pipkov Boulevard",
+    "I'm a street where you'll find the largest orthodox cathedral in Bulgaria, and a park with a beautiful lake. What am I?": "Alexander Nevsky Boulevard",
+    "I'm a street named after a famous Bulgarian author, where you can find the National Library and the National Theater. What am I?": "Slaveykov Square",
+    "I'm a street named after a Bulgarian revolutionary, where you can find the former communist party headquarters and the Central Mineral Baths. What am I?": "Georgi Rakovski Street",
+    "I'm a street where you can find the National Museum of Natural History and the Bulgarian Academy of Sciences, named after a Bulgarian botanist. What am I?": "Prof. G. Bonchev Street",
+    "I'm a street named after a Bulgarian saint, where you can find the Central Sofia Market Hall and the Banya Bashi Mosque. What am I?": "Stefan Stambolov Boulevard",
+    "I'm a street where you can find the Bulgarian Parliament, the National Art Gallery and the Russian Church. What am I?": "Tsarigradsko Shose Boulevard",
+    "I'm a street named after a Bulgarian composer, where you can find the National Music Academy and the National Palace of Justice. What am I?": "Emil Aleksandrov Street",
+    "I am a symbol of wisdom, my wings carry me high. My name is shared with a street in Blagoevgrad, where you can find a university nearby. What am I?": "an owl (University Street)",
+    "I am a common sight in gardens, with petals soft and red. But in Blagoevgrad, I am the name of a street instead. What am I?": "a rose",
+    "In Blagoevgrad's downtown area, I am the heart of the city. I am a bustling street full of shops and cafes, where you can enjoy a tasty pastry. What am I?": "Main Street",
+    "I am a body of water that runs through Blagoevgrad's center, with bridges crossing me high and low. I am named after a famous Bulgarian revolutionary hero. What am I?": "Varosha River",
+    "I am the name of a street in Blagoevgrad's uptown, with trees lining my path so grand. I lead to a hill where the view is divine, the perfect spot to take a stand. What am I?": "Park Street",
+    "I am a place to rest your head, to dream and to snooze. In Blagoevgrad, I am a street with hotels and inns you can choose. What am I?": "Sleepy Street",
+    "I am a famous Bulgarian writer, whose name is on a street sign. I wrote poetry and stories, with words that are divine. What am I?": "Pencho Slaveykov"
+}
+]
