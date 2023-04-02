@@ -16,12 +16,23 @@ db.adventures.findOne({}, (err, docs) => {
     db.adventures.insert({
       name: `Monasite test nomer ${Math.floor(Math.random() * 20)}`,
       locations: [
-        { latitude: 42.0343, longitude: 23.11483, clue: "кур"},
-        { latitude: 42.0267, longitude: 23.0971, clue: "кур2"},
-        { latitude: 42.0227, longitude: 23.0903, clue: "кур3"},
-        { latitude: 42.0312, longitude: 23.0808, clue: "kur4" },
+        {
+          latitude: 42.031016,
+          longitude: 23.079602,
+          clue: "In the resting place of commuters loud and big, colored circles and cans of hues make quite a gig.",
+        },
+        {
+          latitude: 42.031013,
+          longitude: 23.07960297,
+          clue: "Where do students go for a sip and a sit, in a green campus full of wit?",
+        },
+        {
+          latitude: 42.0310139722,
+          longitude: 23.079599,
+          clue: "Where books are kept and knowledge flows, a place where bicycles come and go, a spot to park, a place to stay, where two-wheeled rides take a break for the day.",
+        },
       ],
-    },);
+    });
   }
 });
 
