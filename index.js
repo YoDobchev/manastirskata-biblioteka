@@ -35,6 +35,7 @@ app.listen(port, () => {
   console.log(`Nebuluous listening on ${port}`);
 });
 app.post("/locationEvent", isLoggedIn, (req, res) => {
+  console.log("someone called location event");
   let oldLocation;
   let newDist;
   let oldDist;
@@ -45,6 +46,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
         oldLocation = docs.location;
         let newLocation = req.body;
         let nextGoal;
+        console.log(docs.currentAdventure);
         db.adventures.findOne(
           { _id: docs.currentAdventure.id },
           (err, docsad) => {
@@ -61,11 +63,14 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
               );
               console.log(newDist, oldDist);
               if (newDist < oldDist) {
-                db.users.updateOne(
+                db.users.update(
                   { username: req.session.user },
-                  { $inc: { tokens: newDist - oldDist } }
+                  { $inc: { tokens: (newDist - oldDist) * 13 } }
                 );
               }
+              db.users.findOne({ username: req.session.user }, (err, docs) => {
+                res.json({ tokens: docs.tokens, nextGoal: nextGoal });
+              });
             }
           }
         );
@@ -78,7 +83,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
     {},
     (err) => {}
   );
-  res.json({ delta: newDist - oldDist });
+  // res.json({ delta: newDist - oldDist });
 });
 app.use("/login", require("./routes/login.js"));
 app.use("/signup", require("./routes/signup.js"));
