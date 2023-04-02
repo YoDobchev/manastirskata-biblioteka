@@ -46,13 +46,22 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
         oldLocation = docs.location;
         let newLocation = req.body;
         let nextGoal;
+        let progressIndex = docs.currentAdventure.progressIndex;
         console.log(docs.currentAdventure);
         db.adventures.findOne(
           { _id: docs.currentAdventure.id },
           (err, docsad) => {
             if (!err && docsad != null) {
+              if (distanceBetweenPoints(req.body.latitude, req.body.longitude, docsad.locations[docs.currentAdventure.progressIndex].latitude, docsad.locations[docs.currentAdventure.progressIndex].longitude) < 10) {
+                db.users.update(
+                  { username: req.session.user },
+                  { $inc: { progressIndex: 1 } }
+                );
+                progressIndex++;
+              }
               console.log(docsad);
-              nextGoal = docsad.locations[docs.currentAdventure.progressIndex];
+              console.log("progrIndex " + progressIndex)
+              nextGoal = docsad.locations[progressIndex];
               oldDist = Math.hypot(
                 oldLocation.latitude - nextGoal.latitude,
                 oldLocation.longitude - nextGoal.longitude
@@ -85,6 +94,25 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
   );
   // res.json({ delta: newDist - oldDist });
 });
+
+function distanceBetweenPoints(lat1, lon1, lat2, lon2) {
+  var R = 6371e3; // Earth's radius in meters
+  var phi1 = lat1 * Math.PI / 180;
+  var phi2 = lat2 * Math.PI / 180;
+  var deltaPhi = (lat2 - lat1) * Math.PI / 180;
+  var deltaLambda = (lon2 - lon1) * Math.PI / 180;
+
+  var a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) +
+    Math.cos(phi1) * Math.cos(phi2) *
+    Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
+
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+  var distance = R * c; // Distance in meters
+
+  return distance;
+}
+
 app.use("/login", require("./routes/login.js"));
 app.use("/signup", require("./routes/signup.js"));
 app.use("/", isLoggedIn, require("./routes/adventures.js"));
