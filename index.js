@@ -68,15 +68,22 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
                   docsad.locations[progressIndex].longitude
                 ) < 200
               ) {
+                progressIndex++;
                 db.users.update(
                   { username: req.session.user },
-                  { $inc: { currentAdventure: { progressIndex: 1 } } },
+                  {
+                    $set: {
+                      currentAdventure: {
+                        id: docs.currentAdventure.id,
+                        progressIndex: progressIndex,
+                      },
+                    },
+                  },
                   { new: true },
                   (err, doc) => {
                     console.log(doc);
                   }
                 );
-                progressIndex++;
                 nextGoal = docsad.locations[progressIndex];
               }
               db.users.findOne({ username: req.session.user }, (err, docs) => {
