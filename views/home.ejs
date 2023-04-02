@@ -3,26 +3,13 @@
   <head>
     <title>Mobile Page</title>
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-      crossorigin=""
-    />
-
     <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
-
-    <script
-      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-      crossorigin=""
-    ></script>
   </head>
 
   <body>
     <div id="bottom-menu">
-      <div class="bm-item sel" id="home">
+      <div class="bm-item" id="home">
         <svg
           width="91"
           height="91"
@@ -197,56 +184,21 @@
       ></iframe>
     </div>
     <script>
-      document.querySelector("#map").addEventListener("click", () => {
-        console.log("click");
+      document.addEventListener("message", (m) => {
+        document.querySelector("#credits").childNodes[0].innerText = m.data;
       });
 
-      for (item of document.querySelectorAll(".bm-item")) {
-        item.addEventListener("onclick", () => {
-          console.log("dob");
-          item.classList.add("sel");
-          for (otherItems of document.querySelectorAll(".bm-item")) {
-            if (otherItems != item) {
-              otherItems.classList.remove("sel");
-            }
-          }
-        });
-      }
-      setInterval(() => {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            // Set the marker's position to the user's location
-            // userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
-
-            // Set the map's view to the user's location
-            console.log(position.coords.latitude, position.coords.longitude);
-            fetch("/locationEvent", {
-              method: "POST",
-              body: JSON.stringify({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-              .then((response) => {
-                console.log("Location event sent successfully.");
-              })
-              .catch((error) => {
-                console.error("Error sending location event:", error);
-              });
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      }, 1000);
       let btns = document.getElementsByClassName("bm-item");
       console.log(btns);
-      activeP = "<%- activePage %>";
+      activeP = "/<%- activePage %>";
       routes = ["/home", "/mapPage", "/shopPage", "/profilePage"];
+      routes2 = ["/nearyou", "/map", "/shop", "/profile"];
+      ind = routes2.indexOf(activeP);
       for (let i = 0; i < btns.length; i++) {
+        if (ind == i) {
+          btns[i].classList.toggle("sel");
+        }
+
         btns[i].addEventListener("click", () => {
           window.location.href = routes[i];
         });

@@ -14,7 +14,7 @@ router.get("/joinAdventure", (req, res) => {
         db.users.update(
           { username: req.session.user },
           {
-            $set: { currentAdventure: { id: req.params.id, progressIndex: 0 } },
+            $set: { currentAdventure: { id: req.query.id, progressIndex: 0 } },
           },
           {},
           () => {

@@ -4,24 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
-    />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 
+    <!-- Load Leaflet CSS from CDN -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+
+    <!-- Load custom CSS -->
     <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
 
     <title>Document</title>
+
+    <!-- Define custom styles -->
     <style>
       * {
         overflow: visible;
       }
+
       #map {
         color: none;
         display: block;
@@ -31,18 +34,32 @@
       }
     </style>
   </head>
+
   <body>
     <div id="map"></div>
+
+    <!-- Load Leaflet JS from CDN -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+
     <script>
+      // Define a function to get user details
       function getUser() {
         return user;
       }
+
+      // Create a Leaflet map and set its view
       var map = L.map("map").setView([51.505, -0.09], 6);
+
+      // Add a tile layer to the map
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       ).addTo(map);
 
-      // Marker icon boilerplate
+      // Create a custom marker icon
       function createCustomIcon(iconUrl, iconSize, iconAnchor, popupAnchor) {
         return L.icon({
           iconUrl: iconUrl, // Path to icon
@@ -52,98 +69,40 @@
         });
       }
 
+      // Create custom icons for current location and checkpoints
       var currentLocationIcon = createCustomIcon(
         "icons/current.svg",
         [32, 32],
         [16, 16],
         [0, -16]
-      ); // Icon for current location of the user
+      );
       var checkpointLocationIcon = createCustomIcon(
         "icons/checkpoint.svg",
         [32, 32],
         [16, 16],
         [0, -16]
-      ); // Icon for a checkpoint
-
-      L.marker([51.5, -0.09], { icon: currentLocationIcon }).addTo(map);
-
-      const userLocation = L.marker([0.0, 0.0], {
-        icon: currentLocationIcon,
-      }).addTo(map);
-      let uLon, uLan;
-
-      // Get the user's location using the Geolocation API
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // Set the marker's position to the user's location
-          userLocation.setLatLng([
-            position.coords.latitude,
-            position.coords.longitude,
-          ]);
-
-          // Set the map's view to the user's location
-          map.setView(
-            [position.coords.latitude, position.coords.longitude],
-            13
-          );
-          //   uLan = position.coords.latitude;
-          //   uLon = position.coords.longitude;
-        },
-        (error) => {
-          console.error(error);
-        }
       );
 
-      var control = L.Routing.control({
-        options: [
-          {
-            routeWhileDragging: true, // Alows dynamically redrawing of the route
-          },
-        ],
-        waypoints: [
-          // Waypoints of the route
-          // L.latLng(userLocation.latitude, userLocation.longitude),
-          L.latLng(52.23163710555889, 21.020493507385257),
-          L.latLng(52.2163710555889, 21.040493507385257),
-        ],
-
-        lineOptions: {
-          // Options for the line between the waypoints
-          styles: [{ color: "purple", opacity: 0.7, weight: 8 }],
-        },
-
-        createMarker: function (i, waypoint, n) {
-          // i is the i-th checkpoint, n is the number of waypoints
-          // Adding checkpointLocationIcon marker to the waypoints
-          return L.marker(waypoint.latLng, {
-            icon: checkpointLocationIcon,
-          }).addTo(map);
-        },
+      // Add a marker for the user's location
+      const userLocation = L.marker([0, 0], {
+        icon: currentLocationIcon,
       }).addTo(map);
 
-      document.querySelector("#map").addEventListener("click", () => {
-        console.log("click");
-      });
+      let currGoal;
 
-      for (item of document.querySelectorAll(".bm-item")) {
-        item.addEventListener("onclick", () => {
-          console.log("dob");
-          item.classList.add("sel");
-          for (otherItems of document.querySelectorAll(".bm-item")) {
-            if (otherItems != item) {
-              otherItems.classList.remove("sel");
-            }
-          }
-        });
-      }
+      // Get the user's location using the Geolocation API and send it to the server
       setInterval(() => {
         navigator.geolocation.getCurrentPosition(
-          async (position) => {
+          (position) => {
+            userLocation.setLatLng([
+              position.coords.latitude,
+              position.coords.longitude,
+            ]);
             // Set the marker's position to the user's location
             // userLocation.setLatLng([position.coords.latitude, position.coords.longitude]);
+            map.setView([position.coords.latitude, position.coords.longitude]);
 
-            // Set the map's view to the user's location
-            console.log(position.coords.latitude, position.coords.longitude);
+            // Send location event to the server
             fetch("/locationEvent", {
               method: "POST",
               body: JSON.stringify({
@@ -154,8 +113,32 @@
                 "Content-Type": "application/json",
               },
             })
-              .then((response) => {
+              .then(async (response) => {
                 console.log("Location event sent successfully.");
+                resp = await response.json();
+
+                // Add a circle layer to the map if the next goal has changed
+                if (JSON.stringify(resp.nextGoal) != JSON.stringify(currGoal)) {
+                  currGoal = resp.nextGoal;
+                  console.log(currGoal);
+                  randDist = Math.random() * 0.007;
+                  randAngle = Math.random() * 6.28;
+                  let center = [
+                    currGoal.latitude + randDist * Math.cos(randAngle),
+                    currGoal.longitude + randDist * Math.sin(randAngle),
+                    0.01,
+                  ]; // center coordinates
+                  let radius = 400; // radius in meters
+
+                  // create a circle layer with center and radius
+                  let circle = L.circle(center, {
+                    radius: radius,
+                  });
+
+                  // add the circle layer to the map
+                  circle.addTo(map);
+                  window.postMessage(response.tokens, "*");
+                }
               })
               .catch((error) => {
                 console.error("Error sending location event:", error);
@@ -166,6 +149,24 @@
           }
         );
       }, 1000);
+
+      // Add a click event listener to the map
+      document.querySelector("#map").addEventListener("click", () => {
+        console.log("click");
+      });
+
+      // Add click event listeners to the menu items
+      for (item of document.querySelectorAll(".bm-item")) {
+        item.addEventListener("click", () => {
+          console.log("dob");
+          item.classList.add("sel");
+          for (otherItems of document.querySelectorAll(".bm-item")) {
+            if (otherItems != item) {
+              otherItems.classList.remove("sel");
+            }
+          }
+        });
+      }
     </script>
   </body>
 </html>
