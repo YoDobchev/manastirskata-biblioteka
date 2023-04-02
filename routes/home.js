@@ -80,11 +80,13 @@ router.get("/profile", (req, res) => {
 });
 
 router.get("/clue", (req, res) => {
-  let clue = ''
-  db.adventures.findOne({ _id: req.user.currentAdventure.id}, (err, adv) => {
-    clue = adv.locations[req.user.progressIndex].clue;
-  }); 
-  res.render("clue.ejs", { clue: clue})
+  let clue = "";
+  db.adventures.findOne({ _id: req.user.currentAdventure.id }, (err, adv) => {
+    console.log(adv);
+    console.log(req.user);
+    clue = adv.locations[req.user.currentAdventure.progressIndex].clue;
+    res.render("./clue.ejs", { clue: clue });
+  });
 });
 
 module.exports = router;
