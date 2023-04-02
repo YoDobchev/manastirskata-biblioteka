@@ -52,7 +52,7 @@ app.post("/locationEvent", isLoggedIn, (req, res) => {
           { _id: docs.currentAdventure.id },
           (err, docsad) => {
             if (!err && docsad != null) {
-              if (distanceBetweenPoints(req.body.latitude, req.body.longitude, docsad.locations[docs.currentAdventure.progressIndex].latitude, docsad.locations[docs.currentAdventure.progressIndex].longitude) < 10) {
+              if (distanceBetweenPoints(req.body.latitude, req.body.longitude, docsad.locations[progressIndex].latitude, docsad.locations[progressIndex].longitude) < 20) {
                 db.users.update(
                   { username: req.session.user },
                   { $inc: { progressIndex: 1 } }

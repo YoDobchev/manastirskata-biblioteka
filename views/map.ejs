@@ -118,7 +118,7 @@
                 resp = await response.json();
 
                 // Add a circle layer to the map if the next goal has changed
-                if (JSON.stringify(resp.nextGoal) != JSON.stringify(currGoal)) {
+                if (JSON.stringify(resp.nextGoal) != JSON.stringify(currGoal) || true) {
                   currGoal = resp.nextGoal;
                   console.log(currGoal);
                   randDist = Math.random() * 0.007;
@@ -128,7 +128,7 @@
                     currGoal.longitude + randDist * Math.sin(randAngle),
                     0.01,
                   ]; // center coordinates
-                  let radius = 400; // radius in meters
+                  let radius = 200; // radius in meters
 
                   // create a circle layer with center and radius
                   let circle = L.circle(center, {
